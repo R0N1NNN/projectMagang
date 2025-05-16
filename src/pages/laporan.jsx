@@ -55,7 +55,7 @@ export default function laporan() {
             </Col>
             <Col className="position-relative">
               <img
-                src="/public/icon-laporan.png"
+                src="./icon-laporan.png"
                 alt="hero-img"
                 className="hero-img"
               />

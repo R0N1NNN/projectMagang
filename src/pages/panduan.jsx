@@ -25,7 +25,7 @@ function panduan() {
             </Col>
             <Col className="position-relative">
               <img
-                src="/public/icon-berita.png"
+                src="./icon-berita.png"
                 alt="hero-img"
                 className="hero-img"
               />

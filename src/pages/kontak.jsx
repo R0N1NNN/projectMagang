@@ -16,7 +16,7 @@ function kontak() {
             </Col>
             <Col className="position-relative">
               <img
-                src="/public/icon-kontak.png"
+                src="./icon-kontak.png"
                 alt="hero-img"
                 className="hero-img"
               />

@@ -15,7 +15,7 @@ export default function karirDetail() {
             </Col>
             <Col className="position-relative">
               <img
-                src="/public/icon-profile.png"
+                src="./icon-profile.png"
                 alt="hero-img"
                 className="hero-img"
               />
@@ -26,9 +26,9 @@ export default function karirDetail() {
       <div className='karir-detail-wrapper'>
         <h1>Junior Programmer</h1>
         <h1 className='fs-5 mb-5'>Diskominfotik - Tenaga Ahli Tnologi Informasi</h1>
-        <p><img src='/public/icon-lokasi.png' /><span className='ms-3'>Jakata Pusat, DKI Jakarta</span></p>
-        <p><img src='/public/icon-kalender.png' /><span className='ms-3'>Diposting Sehari yang lalu  •  Jumlah lowongan : 1</span></p>
-        <p><img src='/public/icon-batas.png' /><span className='ms-3'>Batas waktu lamaran 1 Januari 2030</span></p>
+        <p><img src='./icon-lokasi.png' /><span className='ms-3'>Jakata Pusat, DKI Jakarta</span></p>
+        <p><img src='./icon-kalender.png' /><span className='ms-3'>Diposting Sehari yang lalu  •  Jumlah lowongan : 1</span></p>
+        <p><img src='./icon-batas.png' /><span className='ms-3'>Batas waktu lamaran 1 Januari 2030</span></p>
         <div>
           <h1 className='mt-5'>Persyaratan</h1>
           <ul className='mt-4'>

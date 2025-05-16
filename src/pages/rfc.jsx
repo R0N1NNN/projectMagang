@@ -15,7 +15,7 @@ export default function rfc() {
             </Col>
             <Col className="position-relative">
               <img
-                src="/public/icon-rfc.png"
+                src="./icon-rfc.png"
                 alt="hero-img"
                 className="hero-img"
               />
@@ -26,7 +26,7 @@ export default function rfc() {
       <div className='rfc-wrapper' style={{ padding: '100px', display: 'flex', justifyContent: 'center' }}>
         <div style={{ border: '1px solid white', height: '100vh', width: '90%' }}>
           <iframe
-            src="/public/rfc2350.pdf"
+            src="./rfc2350.pdf"
             width="100%"
             height="100%"
             style={{ border: 'none' }}

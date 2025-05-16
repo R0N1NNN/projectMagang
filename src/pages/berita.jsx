@@ -27,7 +27,7 @@ function berita() {
             </Col>
             <Col>
               <img
-                src="/public/icon-berita.png"
+                src="./icon-berita.png"
                 alt="hero-img"
                 className="hero-img"
               />

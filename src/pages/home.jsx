@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import NavigateButton from "../components/NavigateButton";
 
-import '/public/bg-navbar.png'
+import './bg-navbar.png'
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -14,19 +14,19 @@ function Home() {
   const kegiatan = [
     {
       id: 1,
-      image: '/public/kegiatan1.png',
+      image: './kegiatan1.png',
       title: 'Acara bimtek siberchat tanggal 23 maret 2021',
       tanggal: '2024-12-20'
     },
     {
       id: 2,
-      image: '/public/kegiatan2.png',
+      image: './kegiatan2.png',
       title: 'Pelatihan Malware Analysis',
       tanggal: '2024-12-20'
     },
     {
       id: 3,
-      image: '/public/kegiatan3.png',
+      image: './kegiatan3.png',
       title: 'Seminar drill test',
       tanggal: '2024-12-20'
     }
@@ -60,7 +60,7 @@ function Home() {
             </Col>
             <Col>
               <img
-                src="/public/icon-nav.png"
+                src="./icon-nav.png"
                 alt="hero-img"
                 className="hero-img ms-5"
               />

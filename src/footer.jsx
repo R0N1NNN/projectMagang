@@ -11,7 +11,7 @@ function Footer() {
           <Col lg={5} md={12}>
             <Navbar.Brand href="/">
               <img
-                src="/public/logo.png"
+                src="./logo.png"
                 alt="CSIRT Logo"
                 className='image-footer'
               />

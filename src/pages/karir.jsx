@@ -24,7 +24,7 @@ function karir() {
             </Col>
             <Col className="position-relative">
               <img
-                src="/public/icon-profile.png"
+                src="./icon-profile.png"
                 alt="hero-img"
                 className="hero-img"
               />
