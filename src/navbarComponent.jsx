@@ -13,9 +13,9 @@ function NavbarComponent() {
   return (
     <Navbar expand="lg" fixed='top'>
       <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/projectmagang">
           <img
-            src="/public/logo.png"
+            src="./logo.png"
             alt="CSIRT Logo"
             height='70px'
             width='auto'
@@ -25,7 +25,7 @@ function NavbarComponent() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto nav-main">
 
-            <NavLink to="/" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Beranda</NavLink>
+            <NavLink to="/projectmagang" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Beranda</NavLink>
             <NavLink to="/profile" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Profile</NavLink>
 
             <NavDropdown title="Informasi & Edukasi" id="basic-nav-dropdown" className="menu-dark" renderMenuOnMount={true}>
