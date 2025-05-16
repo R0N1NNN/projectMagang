@@ -2,8 +2,6 @@ import React from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import NavigateButton from "../components/NavigateButton";
 
-import './bg-navbar.png'
-
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Link } from 'react-router-dom';
