@@ -25,21 +25,21 @@ function App() {
     <Container>
       <NavbarComponent />
       <Routes>
-        <Route path="/projectmagang" element={<Home />} />
-        <Route path="/projectmagang/profile" element={<Profile />} />
-        <Route path="/projectmagang/berita" element={<Berita />} />
-        <Route path="/projectmagang/berita/:id" element={<BeritaDetail />} />
-        <Route path="/projectmagang/berita/halaman/:halaman" element={<Berita />} />
-        <Route path="/projectmagang/event" element={<Event />} />
-        <Route path="/projectmagang/panduan" element={<Panduan />} />
-        <Route path="/projectmagang/kegiatan" element={<Kegiatan />} />
-        <Route path='/projectmagang/kegiatan/:halaman' element={<Kegiatan />} />
-        <Route path='/projectmagang/karir' element={<Karir />} />
-        <Route path='/projectmagang/karirDetail' element={<KarirDetail />} />
-        <Route path='/projectmagang/rfc' element={<RFC />} />
-        <Route path='/projectmagang/laporan' element={<Laporan />} />
-        <Route path='/projectmagang/kontak' element={<Kontak />} />
-        <Route path='/projectmagang/statistik' element={<Statistik />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/berita" element={<Berita />} />
+        <Route path="/berita/:id" element={<BeritaDetail />} />
+        <Route path="/berita/halaman/:halaman" element={<Berita />} />
+        <Route path="/event" element={<Event />} />
+        <Route path="/panduan" element={<Panduan />} />
+        <Route path="/kegiatan" element={<Kegiatan />} />
+        <Route path='/kegiatan/:halaman' element={<Kegiatan />} />
+        <Route path='/karir' element={<Karir />} />
+        <Route path='/karirDetail' element={<KarirDetail />} />
+        <Route path='/rfc' element={<RFC />} />
+        <Route path='/laporan' element={<Laporan />} />
+        <Route path='/kontak' element={<Kontak />} />
+        <Route path='/statistik' element={<Statistik />} />
       </Routes>
       <Footer />
     </Container>
