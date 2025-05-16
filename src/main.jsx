@@ -16,7 +16,7 @@ AOS.init({
   mirror: true,
 });
 
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>

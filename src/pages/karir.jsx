@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { cardKarir } from "../datapages/index.jsx";
 import { BsArrowRight } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 
 function karir() {
   const [search, setSearch] = useState('');
@@ -71,9 +72,11 @@ function karir() {
                     <div className='d-flex align-items-center mb-3'>
                       <span className='posisi-karir'>{item.posisi}</span>
                     </div>
-                    <Button href='/karirDetail' className='button-karir mt-auto align-self-start'>
-                      Lihat Detail <span className='ms-2'><BsArrowRight /></span>
-                    </Button>
+                    <Link to='/karirDetail'>
+                      <Button className='button-karir mt-auto align-self-start'>
+                        Lihat Detail <span className='ms-2'><BsArrowRight /></span>
+                      </Button>
+                    </Link>
                   </Card.Body>
                 </Card>
               </Col>
