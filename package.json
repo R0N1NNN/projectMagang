@@ -1,6 +1,6 @@
 {
   "name": "projectmagang",
-  "homepage": "https://r0n1nnn.github.io/projectmagang",
+  "homepage": "https://r0n1nnn.github.io/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,6 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "animate.css": "^4.1.1",

@@ -1,8 +1,50 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import "../css/main.css"; // Import custom CSS for styling
+import emailjs from '@emailjs/browser';
 
 export default function laporan() {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    const requiredFields = [
+      { name: "firstName", label: "First Name" },
+      { name: "lastName", label: "Last Name" },
+      { name: "businessEmail", label: "Email Address" },
+      { name: "businessPhone", label: "Phone Number" },
+      { name: "domainName", label: "Nama Domain" },
+      { name: "impactedUrl", label: "URL Terdampak" },
+      { name: "incidentType", label: "Jenis Insiden" },
+      { name: "incidentImpact", label: "Dampak Insiden" },
+      { name: "incidentDescription", label: "Deskripsi" },
+    ];
+
+    const formData = new FormData(form.current);
+
+    for (let field of requiredFields) {
+      const value = formData.get(field.name);
+      if (!value || value.trim() === "") {
+        alert(`Pengiriman Gagal, Bagian "${field.label}" wajib diisi`);
+        return;
+      }
+    }
+
+    emailjs
+      .sendForm('service_35zz5vq', 'template_2jn9c27', form.current, {
+        publicKey: 'Xw0Iu8t5mHaLHk3g2',
+      })
+      .then(
+        () => {
+          alert('Laporan berhasil dikirim!');
+        },
+        (error) => {
+          alert('Pengiriman gagal: ' + error.text);
+        },
+      );
+  };
+
   return (
     <div>
       <header className="homepage">
@@ -22,9 +64,9 @@ export default function laporan() {
         </Container>
       </header>
       <div className="mt-5 mb-3">
-        <Container>
+        <Container className="rounded-5" style={{ border: "1px solid #E5E5E5", padding: "75px" }}>
           <Col md={12}>
-            <Form>
+            <Form ref={form} onSubmit={sendEmail}>
               <h3 className="mb-4">Data Diri</h3>
               <Row className="mb-5 g-5">
                 <Col md={4}>
@@ -35,7 +77,7 @@ export default function laporan() {
                         *
                       </span>
                     </Form.Label>
-                    <Form.Control type="text" className="input-secondary-bg" />
+                    <Form.Control type="text" className="input-secondary-bg" name="firstName" />
                   </Form.Group>
                 </Col>
                 <Col md={4}>
@@ -46,7 +88,7 @@ export default function laporan() {
                         *
                       </span>
                     </Form.Label>
-                    <Form.Control type="text" className="input-secondary-bg" />
+                    <Form.Control type="text" className="input-secondary-bg" name="lastName" />
                   </Form.Group>
                 </Col>
                 <Col md={4}>
@@ -61,6 +103,7 @@ export default function laporan() {
                       type="email"
                       placeholder="Cth: abc.xyz@gmail.com"
                       className="input-secondary-bg"
+                      name="businessEmail"
                     />
                   </Form.Group>
                 </Col>
@@ -76,6 +119,7 @@ export default function laporan() {
                       type="text"
                       placeholder="Cth: +62 813 xxxxxx"
                       className="input-secondary-bg"
+                      name="businessPhone"
                     />
                   </Form.Group>
                 </Col>
@@ -97,6 +141,7 @@ export default function laporan() {
                       type="text"
                       placeholder="Cth: Jakarta.go.id"
                       className="input-secondary-bg"
+                      name="domainName"
                     />
                   </Form.Group>
                 </Col>
@@ -112,13 +157,17 @@ export default function laporan() {
                       type="text"
                       placeholder="Cth: https://csirt.jakarta.go.id/"
                       className="input-secondary-bg"
+                      name="impactedUrl"
                     />
                   </Form.Group>
                 </Col>
                 <Col md={4}>
                   <Form.Group controlId="incidentDate">
-                    <Form.Label>Tanggal Kejadian</Form.Label>
-                    <Form.Control type="date" className="input-secondary-bg" />
+                    <Form.Label>Tanggal Kejadian
+                      <span style={{ color: "red", paddingLeft: "5px" }}>
+                        *
+                      </span></Form.Label>
+                    <Form.Control type="date" className="input-secondary-bg" name="incidentDate" />
                   </Form.Group>
                 </Col>
               </Row>
@@ -138,6 +187,7 @@ export default function laporan() {
                       type="text"
                       placeholder="Cth: Deface, Malware, dll"
                       className="input-secondary-bg"
+                      name="incidentType"
                     />
                   </Form.Group>
                 </Col>
@@ -153,6 +203,7 @@ export default function laporan() {
                       type="text"
                       placeholder="Cth: Website tidak bisa diakses"
                       className="input-secondary-bg"
+                      name="incidentImpact"
                     />
                   </Form.Group>
                 </Col>
@@ -166,6 +217,7 @@ export default function laporan() {
                       as="textarea"
                       rows={8}
                       className="input-secondary-bg"
+                      name="incidentDescription"
                     />
                   </Form.Group>
                 </Col>
@@ -193,6 +245,7 @@ export default function laporan() {
                   type="submit"
                   className="mx-auto button-laporkan"
                   style={{ width: "180px", height: "50px" }}
+                  value="Send"
                 >
                   Submit
                 </Button>
@@ -201,6 +254,6 @@ export default function laporan() {
           </Col>
         </Container>
       </div>
-    </div>
+    </div >
   );
 }
