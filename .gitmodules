@@ -1,3 +1,0 @@
-[submodule "src/Flowise"]
-    path = src/Flowise
-    url = https://github.com/FlowiseAI/Flowise.git
