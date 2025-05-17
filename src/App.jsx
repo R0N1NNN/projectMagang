@@ -25,7 +25,7 @@ function App() {
     <Container>
       <NavbarComponent />
       <Routes>
-        <Route path="/projectmagang" element={<Home />} />
+        <Route path="/projectmagang/" element={<Home />} />
         <Route path="/projectmagang/profile" element={<Profile />} />
         <Route path="/projectmagang/berita" element={<Berita />} />
         <Route path="/projectmagang/berita/:id" element={<BeritaDetail />} />
