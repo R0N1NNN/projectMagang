@@ -38,8 +38,12 @@ import KontakIcon5 from '/icon-x.png'
 import KontakIcon6 from '/icon-tiktok.png'
 
 
+import StatisIcon1 from '/shield-halved-solid.svg'
+import StatisIcon2 from '/bug-solid.svg'
+import StatisIcon3 from '/file-shield-solid.svg'
+import StatisIcon4 from '/user-secret-solid.svg'
+
 import { FaLock, FaWrench, FaHandPointer, FaSyncAlt, FaCloudUploadAlt, FaCogs } from "react-icons/fa";
-import event from '../pages/event'
 
 export const semuaBerita = [
   {
@@ -458,25 +462,25 @@ export const faq = [
 export const cardProfile = [
   {
     id: 1,
-    img: "/Berita1.png",
+    img: BeritaImage1,
     title: "Be there for you",
     desc: "We never lose sight of the people we build our solutions for. Without our customers we wouldn’t exist, so we put them first."
   },
   {
     id: 2,
-    img: "/Berita2.png",
+    img: BeritaImage2,
     title: "Be committed experts",
     desc: "Through our recognized technology expertise, we’re committed to providing our customers with safety and confidence, so they know they can trust us."
   },
   {
     id: 3,
-    img: "/Berita3.png",
+    img: BeritaImage3,
     title: "Be cleverly inventive",
     desc: "We’re tirelessly looking for new, smart solutions and always striving to reach new levels of cybersecurity excellence."
   },
   {
     id: 4,
-    img: "/Berita4.png",
+    img: BeritaImage4,
     title: "Be powered by challenges",
     desc: "We constantly challenge ourselves and the status quo to do what others can’t or won’t do in the cybersecurity space."
   }
@@ -485,25 +489,25 @@ export const cardProfile = [
 export const cardStatistik = [
   {
     id: 1,
-    icon: "/shield-halved-solid.svg",
+    icon: StatisIcon1,
     title: "Keberhasilan Penanganan",
     desc: "98%"
   },
   {
     id: 2,
-    icon: "/bug-solid.svg",
+    icon: StatisIcon2,
     title: "Kasus Malware",
     desc: "1.200+"
   },
   {
     id: 3,
-    icon: "/file-shield-solid.svg",
+    icon: StatisIcon3,
     title: "Kasus Phising",
     desc: "850+"
   },
   {
     id: 4,
-    icon: "/user-secret-solid.svg",
+    icon: StatisIcon4,
     title: "Ancaman Diblokir",
     desc: "2.500+"
   }
