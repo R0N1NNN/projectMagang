@@ -458,25 +458,25 @@ export const faq = [
 export const cardProfile = [
   {
     id: 1,
-    img: "/public/Berita1.png",
+    img: "/Berita1.png",
     title: "Be there for you",
     desc: "We never lose sight of the people we build our solutions for. Without our customers we wouldn’t exist, so we put them first."
   },
   {
     id: 2,
-    img: "/public/Berita2.png",
+    img: "/Berita2.png",
     title: "Be committed experts",
     desc: "Through our recognized technology expertise, we’re committed to providing our customers with safety and confidence, so they know they can trust us."
   },
   {
     id: 3,
-    img: "/public/Berita3.png",
+    img: "/Berita3.png",
     title: "Be cleverly inventive",
     desc: "We’re tirelessly looking for new, smart solutions and always striving to reach new levels of cybersecurity excellence."
   },
   {
     id: 4,
-    img: "/public/Berita4.png",
+    img: "/Berita4.png",
     title: "Be powered by challenges",
     desc: "We constantly challenge ourselves and the status quo to do what others can’t or won’t do in the cybersecurity space."
   }
@@ -485,25 +485,25 @@ export const cardProfile = [
 export const cardStatistik = [
   {
     id: 1,
-    icon: "/public/shield-halved-solid.svg",
+    icon: "/shield-halved-solid.svg",
     title: "Keberhasilan Penanganan",
     desc: "98%"
   },
   {
     id: 2,
-    icon: "/public/bug-solid.svg",
+    icon: "/bug-solid.svg",
     title: "Kasus Malware",
     desc: "1.200+"
   },
   {
     id: 3,
-    icon: "/public/file-shield-solid.svg",
+    icon: "/file-shield-solid.svg",
     title: "Kasus Phising",
     desc: "850+"
   },
   {
     id: 4,
-    icon: "/public/user-secret-solid.svg",
+    icon: "/user-secret-solid.svg",
     title: "Ancaman Diblokir",
     desc: "2.500+"
   }
