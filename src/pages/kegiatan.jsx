@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Card, Pagination } from 'react-bootstrap';
 import { kegiatanDetail, halamanKegiatan } from "../datapages/index.jsx";
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParam, useNavigate } from 'react-router-dom';
 import '../css/main.css';
 
 
@@ -16,6 +16,8 @@ function kegiatan() {
 
   const { halaman: paramHalaman } = useParams();
   const halaman = parseInt(paramHalaman) || 1;
+
+  const navigate = useNavigate();
 
 
   return (
@@ -72,7 +74,7 @@ function kegiatan() {
         <div className="d-flex justify-content-center pagination-wrapper">
           <Pagination className="mt-4">
             <Pagination.First
-              onClick={() => (window.location.href = '/kegiatan')}
+              onClick={() => navigate(`/kegiatan/${next}`)}
               disabled={(parseInt(halaman) || 1) === 1}
             />
             <Pagination.Prev
@@ -80,9 +82,9 @@ function kegiatan() {
                 const current = parseInt(halaman) || 1;
                 const prev = current - 1;
                 if (prev === 1) {
-                  window.location.href = '/kegiatan';
+                  navigate('/kegiatan');
                 } else if (prev > 1) {
-                  window.location.href = `/kegiatan/${prev}`;
+                  navigate(`/kegiatan/${prev}`);
                 }
               }}
               disabled={(parseInt(halaman) || 1) === 1}
@@ -100,7 +102,7 @@ function kegiatan() {
               return (
                 <Pagination.Item
                   key={kegiatan.halaman}
-                  href={path}
+                  onClick={() => navigate(path)}
                   active={currentPath === path}
                 >
                   {kegiatan.halaman}
@@ -114,7 +116,7 @@ function kegiatan() {
                 const next = current + 1;
                 const max = halamanKegiatan[halamanKegiatan.length - 1].halaman;
                 if (next <= max) {
-                  window.location.href = next === 1 ? '/kegiatan' : `/kegiatan/${next}`;
+                  navigate(next === 1 ? '/kegiatan' : `/kegiatan/${next}`);
                 }
               }}
               disabled={(parseInt(halaman) || 1) === halamanKegiatan[halamanKegiatan.length - 1].halaman}
@@ -123,7 +125,7 @@ function kegiatan() {
             <Pagination.Last
               onClick={() => {
                 const lastPage = halamanKegiatan[halamanKegiatan.length - 1].halaman;
-                window.location.href = `/kegiatan/${lastPage}`;
+                navigate(`/kegiatan/${lastPage}`);
               }}
               disabled={(parseInt(halaman) || 1) === halamanKegiatan[halamanKegiatan.length - 1].halaman}
             />

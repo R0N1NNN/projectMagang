@@ -18,6 +18,13 @@ import EventImage7 from '/event7.png'
 import EventImage8 from '/event8.png'
 import EventImage9 from '/event9.png'
 
+import InfoImage1 from '/infografis1.png'
+import InfoImage2 from '/infografis2.png'
+import InfoImage3 from '/infografis3.png'
+import InfoImage4 from '/infografis4.png'
+import InfoImage5 from '/infografis5.png'
+import InfoImage6 from '/infografis6.png'
+
 import KegiatanImage1 from '/kegiatan1.png'
 import KegiatanImage2 from '/kegiatan2.png'
 import KegiatanImage3 from '/kegiatan3.png'
@@ -245,27 +252,27 @@ export const videoPanduan = [
 
 export const infografis = [
   {
-    image: "/public/infografis1.png",
+    image: InfoImage1,
     title: "Brute Force Ancaman nyata di dunia digital"
   },
   {
-    image: "/public/infografis2.png",
+    image: InfoImage2,
     title: "Peringatan Keamanan - Celah berbahaya di temukan di open ssh"
   },
   {
-    image: "/public/infografis3.png",
+    image: InfoImage3,
     title: "Waspada penipuan melalui whatsapp berkedok file APK"
   },
   {
-    image: "/public/infografis4.png",
+    image: InfoImage4,
     title: "Tips Aman menggunakan Wifi Publik"
   },
   {
-    image: "/public/infografis5.png",
+    image: InfoImage5,
     title: "Apa yang harus dilakukan pengelola server jika mengalami insiden siber"
   },
   {
-    image: "/public/infografis6.png",
+    image: InfoImage6,
     title: "Waspada Bahaya Ransomware kenali modus serangannya"
   }
 ];

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Pagination } from "react-bootstrap";
 import { semuaBerita, halamanBerita } from "../datapages/index.jsx";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import "../css/main.css";
 
 function berita() {
@@ -16,6 +16,8 @@ function berita() {
 
   const { halaman: paramHalaman } = useParams();
   const halaman = parseInt(paramHalaman) || 1;
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -71,7 +73,7 @@ function berita() {
         <div className="d-flex justify-content-center pagination-wrapper">
           <Pagination className="mt-4">
             <Pagination.First
-              onClick={() => (window.location.href = '/berita/halaman/1')}
+              onClick={() => navigate('/berita/halaman/1')}
               disabled={(parseInt(halaman) || 1) === 1}
             />
             <Pagination.Prev
@@ -79,16 +81,16 @@ function berita() {
                 const current = parseInt(halaman) || 1;
                 const prev = current - 1;
                 if (prev === 1) {
-                  window.location.href = '/berita';
+                  navigate('/berita');
                 } else if (prev > 1) {
-                  window.location.href = `/berita/halaman/${prev}`;
+                  navigate(`/berita/halaman/${prev}`);
                 }
               }}
               disabled={(parseInt(halaman) || 1) === 1}
             />
 
             <Pagination.Item
-              href="/berita"
+              onClick={() => navigate('/berita')}
               active={currentPath === '/berita'}
             >
               1
@@ -99,7 +101,7 @@ function berita() {
               return (
                 <Pagination.Item
                   key={berita.halaman}
-                  href={path}
+                  onClick={() => navigate(path)}
                   active={currentPath === path}
                 >
                   {berita.halaman}
@@ -113,7 +115,7 @@ function berita() {
                 const next = current + 1;
                 const max = halamanBerita[halamanBerita.length - 1].halaman;
                 if (next <= max) {
-                  window.location.href = next === 1 ? '/berita' : `/berita/halaman/${next}`;
+                  navigate(next === 1 ? '/berita' : `/berita/halaman/${next}`);
                 }
               }}
               disabled={(parseInt(halaman) || 1) === halamanBerita[halamanBerita.length - 1].halaman}
@@ -122,7 +124,7 @@ function berita() {
             <Pagination.Last
               onClick={() => {
                 const lastPage = halamanBerita[halamanBerita.length - 1].halaman;
-                window.location.href = `/berita/halaman/${lastPage}`;
+                navigate(`/berita/halaman/${lastPage}`);
               }}
               disabled={(parseInt(halaman) || 1) === halamanBerita[halamanBerita.length - 1].halaman}
             />
