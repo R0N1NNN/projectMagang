@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Card, Pagination } from 'react-bootstrap';
 import { kegiatanDetail, halamanKegiatan } from "../datapages/index.jsx";
-import { useLocation, useParam, useNavigate } from 'react-router-dom';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import '../css/main.css';
 
 
