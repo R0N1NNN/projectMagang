@@ -13,7 +13,7 @@ function NavbarComponent() {
   return (
     <Navbar expand="lg" fixed='top'>
       <Container>
-        <Navbar.Brand href="/projectmagang">
+        <Navbar.Brand href="/projectMagang/">
           <img
             src="./logo.png"
             alt="CSIRT Logo"
@@ -25,23 +25,23 @@ function NavbarComponent() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto nav-main">
 
-            <NavLink to="/projectmagang/" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Beranda</NavLink>
-            <NavLink to="/projectmagang/profile" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Profile</NavLink>
+            <NavLink to="/projectMagang/" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Beranda</NavLink>
+            <NavLink to="/projectMagang/profile" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Profile</NavLink>
 
             <NavDropdown title="Informasi & Edukasi" id="basic-nav-dropdown" className="menu-dark" renderMenuOnMount={true}>
               <div className="dropdown-grid-wrapper">
-                <NavLink to="/projectmagang/berita" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-berita.png' />Berita</NavLink>
-                <NavLink to="/projectmagang/event" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-event.png' />Event</NavLink>
-                <NavLink to="/projectmagang/panduan" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-panduan.png' />Panduan & Infografis</NavLink>
-                <NavLink to="/projectmagang/kegiatan" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-kegiatan.png' />Kegiatan</NavLink>
-                <NavLink to="/projectmagang/karir" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-karir.png' />Karir</NavLink>
-                <NavLink to="/projectmagang/statistik" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-statistik.png' />Statistik</NavLink>
+                <NavLink to="/projectMagang/berita" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-berita.png' />Berita</NavLink>
+                <NavLink to="/projectMagang/event" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-event.png' />Event</NavLink>
+                <NavLink to="/projectMagang/panduan" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-panduan.png' />Panduan & Infografis</NavLink>
+                <NavLink to="/projectMagang/kegiatan" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-kegiatan.png' />Kegiatan</NavLink>
+                <NavLink to="/projectMagang/karir" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-karir.png' />Karir</NavLink>
+                <NavLink to="/projectMagang/statistik" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-statistik.png' />Statistik</NavLink>
               </div>
             </NavDropdown>
 
-            <NavLink to="/projectmagang/rfc" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>RFC2350</NavLink>
-            <NavLink to="/projectmagang/laporan" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Pelaporan Insiden</NavLink>
-            <NavLink to="/projectmagang/kontak" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Kontak Kami</NavLink>
+            <NavLink to="/projectMagang/rfc" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>RFC2350</NavLink>
+            <NavLink to="/projectMagang/laporan" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Pelaporan Insiden</NavLink>
+            <NavLink to="/projectMagang/kontak" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Kontak Kami</NavLink>
 
           </Nav>
           <div className='input-group'>
