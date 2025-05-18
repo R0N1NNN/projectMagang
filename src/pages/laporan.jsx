@@ -226,7 +226,7 @@ export default function laporan() {
                     <Form.Label>Captcha</Form.Label>
                     <br />
                     <img
-                      src="/public/captcha.jpg"
+                      src="./captcha.jpg"
                       className="mb-4"
                       style={{ width: "100%" }}
                       alt="captcha"
