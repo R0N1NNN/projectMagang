@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container, Row, Col, Accordion } from 'react-bootstrap';
 import { cardKontak, faq } from '../datapages/index.jsx';
-import { Link } from 'react-router-dom';
 
 function kontak() {
   return (
@@ -43,18 +42,19 @@ function kontak() {
           </div>
           <div className="d-flex mt-5 gap-5 flex-wrap justify-content-center">
             {cardKontak.map((kontak) => (
-              <Link
+              <a
                 href={kontak.url}
                 key={kontak.id}
                 className="kontak-card-modern text-decoration-none"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <div className="kontak-icon-modern">
                   <img src={kontak.icon} alt={kontak.title} style={{ width: 48, height: 48 }} />
                 </div>
                 <div className="fw-bold mb-1" style={{ fontSize: 20 }}>{kontak.title}</div>
                 <div className="kontak-desc-modern">{kontak.desc}</div>
-              </Link>
+              </a>
             ))}
           </div>
           <div style={{ fontSize: '48px', fontWeight: 'bold', padding: '5px' }} className='text-center rounded-4 mt-5'>

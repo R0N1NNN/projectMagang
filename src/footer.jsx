@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Row, Navbar } from 'react-bootstrap'
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { BsInstagram, BsYoutube } from "react-icons/bs";
 
 function Footer() {
@@ -9,7 +9,7 @@ function Footer() {
       <div className='footer'>
         <Row className='footer-content mt-3'>
           <Col lg={5} md={12}>
-            <Navbar.Brand href="/">
+            <Navbar.Brand as={NavLink} to="/">
               <img
                 src="./logo.png"
                 alt="CSIRT Logo"
