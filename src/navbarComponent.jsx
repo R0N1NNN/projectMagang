@@ -13,7 +13,7 @@ function NavbarComponent() {
   return (
     <Navbar expand="lg" fixed='top'>
       <Container>
-        <Navbar.Brand href="#/">
+        <Navbar.Brand as={NavLink} to="/">
           <img
             src="./logo.png"
             alt="CSIRT Logo"
