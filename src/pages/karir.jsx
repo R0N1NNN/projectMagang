@@ -52,7 +52,7 @@ function karir() {
           </div>
           <Row className="karir-grid gy-4 gx-4 justify-content-center">
             {filteredKarir.length === 0 && (
-              <div className="text-center text-secondary py-5">Tidak ada lowongan ditemukan.</div>
+              <div className="text-center text-secondary py-5">Tidak ada lowongan yang dapat ditemukan.</div>
             )}
             {filteredKarir.map((item, idx) => (
               <Col key={idx} xs={12} sm={6} md={4} lg={3}>
@@ -72,7 +72,7 @@ function karir() {
                     <div className='d-flex align-items-center mb-3'>
                       <span className='posisi-karir'>{item.posisi}</span>
                     </div>
-                    <Link to='/karirDetail'>
+                    <Link to={`/karirDetail/halamanKarir/${item.title}`}>
                       <Button className='button-karir mt-auto align-self-start'>
                         Lihat Detail <span className='ms-2'><BsArrowRight /></span>
                       </Button>

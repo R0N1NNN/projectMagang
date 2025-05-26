@@ -70,7 +70,7 @@ function Home() {
         <Link to={`/berita/${latestBerita?.id}`} className="text-decoration-none">
           <div className='news-group'>
             <div className="news-title">
-              <div style={{ marginBottom: '50px', marginTop: '40px' }}>
+              <div style={{ marginBottom: '20px', marginTop: '40px' }}>
                 <h3>BERITA TERBARU</h3>
               </div>
               <h2 className='me-5'>{latestBerita?.title}</h2>
@@ -151,9 +151,9 @@ function Home() {
         </Container>
       </div>
       <div style={{ paddingTop: '150px' }}>
-        <Container className='d-flex justify-content-between align-items-center mx-auto title-kegiatan'>
-          <h1 className='fw-bold text-start'>Kegiatan Terbaru</h1>
-          <Link to='/kegiatan' className='text-decoration-none text-end kegiatan-lainnya'>
+        <Container className='d-flex justify-content-between align-items-center mx-auto mb-4 title-kegiatan'>
+          <h1 className='fw-bold text-start me-5'>Kegiatan Terbaru</h1>
+          <Link to='/kegiatan' className='text-decoration-none kegiatan-lainnya'>
             Jelajahi Kegiatan Lainnya<i className="fa-solid fa-chevron-right icon-kegiatan-lain ms-2"></i>
           </Link>
         </Container>
@@ -161,7 +161,7 @@ function Home() {
           {kegiatan.map((item, index) => (
             <div className='kegiatan-group' key={index}>
               <Card style={{ backgroundColor: 'transparent', border: 'none' }} className="rounded-4">
-                <Card.Img variant="top" src={item.image} className="kegiatan-img rounded-3" />
+                <Card.Img variant="top" src={item.image} className="rounded-3" style={{ height: '220px' }} />
                 <Card.Body>
                   <h1 className='mt-2' style={{ fontSize: '18px', color: '#bfcbe7' }}>KEGIATAN</h1>
                   <Card.Title className='title-berita mt-3' style={{ color: 'white' }}>

@@ -4,15 +4,16 @@
 }
 
 :root {
-  --primary-color: #0b121f;
-  --secondary-color: #121c2b;
+  --primary-color: #16253f;
+  --secondary-color: #213450;
+  --laporan-color: #4872b1;
   --color-text: #ffffff;
   --desc-color: #bfcbe7;
   --red-color: #7c1f15;
 }
 
 body {
-  background: #0b121f;
+  background: var(--primary-color);
 }
 
 h3 {
@@ -35,7 +36,7 @@ button:hover {
 
 /* Navbar */
 .navbar {
-  background-color: #0b121f;
+  background-color: var(--primary-color);
   padding: 15px 0 15px 0;
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -171,7 +172,7 @@ button:hover {
 /* Hero Section */
 .homepage {
   height: 80vh; /* Atau 80% viewport */
-  background-color: #0b121f;
+  background-color: var(--primary-color);
   display: flex;
   align-items: center; /* Vertikal tengah */
   justify-content: center; /* Horizontal tengah (jika ingin, opsional) */
@@ -291,7 +292,7 @@ button:hover {
   background-color: var(--primary-color);
   font-size: 1.1rem;
   font-weight: bold;
-  padding: 8px 25px;
+  padding: 10px 25px;
   border-radius: 15px;
   display: inline-block;
 }
@@ -520,8 +521,7 @@ button:hover {
 }
 
 .title-kegiatan {
-  padding: 0 150px 0 150px;
-  width: 100%;
+  padding: 0 100px 0 100px;
   height: 110px;
   font-size: 2.5rem;
   font-weight: bold;
@@ -1365,7 +1365,7 @@ button:hover {
 /* Footer */
 .footer {
   border-radius: 10px;
-  background-color: #121c2b;
+  background-color: var(--secondary-color);
   height: auto;
   padding-left: 100px;
   margin-bottom: 80px;
@@ -1618,5 +1618,94 @@ button:hover {
   .statistik-data-section {
     padding: 28px 8px 18px 8px;
     border-radius: 14px;
+  }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .hero-img {
+    margin-left: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  .homepage .header-box h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .homepage .header-box p {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .halaman-berita {
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  .berita-title-section {
+    font-size: 1.5rem;
+  }
+
+  .news-group {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .news-title h2 {
+    width: 100%;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .news-content {
+    width: 100%;
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+
+  .news-image {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage .header-box h1 {
+    font-size: 1.5rem;
+  }
+
+  .homepage .header-box p {
+    font-size: 0.9rem;
+  }
+
+  .button-laporkan {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .halaman-berita {
+    padding: 10px;
+  }
+
+  .berita-title-section {
+    font-size: 1.2rem;
+  }
+
+  .news-title h2 {
+    font-size: 1.2rem;
+  }
+
+  .news-content {
+    font-size: 0.8rem;
+  }
+
+  .pagination .page-link {
+    min-width: 24px;
+    min-height: 24px;
+    font-size: 0.8rem;
   }
 }

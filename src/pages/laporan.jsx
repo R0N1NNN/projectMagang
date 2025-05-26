@@ -1,10 +1,20 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import "../css/main.css"; // Import custom CSS for styling
 import emailjs from '@emailjs/browser';
 
 export default function laporan() {
   const form = useRef();
+  const [ticketNumber, setTicketNumber] = useState('');
+
+  const randomizeTicket = () => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let ticket = '';
+    for (let i = 0; i < 10; i++) {
+      ticket += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return ticket;
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -19,6 +29,8 @@ export default function laporan() {
       { name: "incidentType", label: "Jenis Insiden" },
       { name: "incidentImpact", label: "Dampak Insiden" },
       { name: "incidentDescription", label: "Deskripsi" },
+      { name: "incidentCaptcha", label: "Captcha" },
+      { name: "Pernyataan", label: "Pernyataan" },
     ];
 
     const formData = new FormData(form.current);
@@ -30,6 +42,15 @@ export default function laporan() {
         return;
       }
     }
+
+    const newTicket = randomizeTicket();
+    setTicketNumber(newTicket);
+
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "ticketNumber";
+    input.value = newTicket;
+    form.current.appendChild(input);
 
     emailjs
       .sendForm('service_35zz5vq', 'template_2jn9c27', form.current, {
@@ -64,7 +85,7 @@ export default function laporan() {
         </Container>
       </header>
       <div className="mt-5 mb-3">
-        <Container className="rounded-5" style={{ border: "1px solid #E5E5E5", padding: "75px" }}>
+        <Container className="rounded-5" style={{ padding: "75px", marginTop: '150px', border: '1px solid var(--laporan-color)' }}>
           <Col md={12}>
             <Form ref={form} onSubmit={sendEmail}>
               <h3 className="mb-4">Data Diri</h3>
@@ -232,13 +253,15 @@ export default function laporan() {
                       alt="captcha"
                     />
                     <Form.Label>Masukkan Captcha Diatas</Form.Label>
-                    <Form.Control type="text" className="input-secondary-bg" />
+                    <Form.Control type="text" className="input-secondary-bg" name="incidentCaptcha" />
                   </Form.Group>
                 </Col>
                 <Form.Group>
                   <Form.Check
+                    controlId="Pernyataan"
                     type="checkbox"
                     label="Saya menyatakan bahwa informasi yang saya berikan adalah benar dan dapat dipertanggung jawabkan."
+                    name="Pernyataan"
                   />
                 </Form.Group>
                 <Button

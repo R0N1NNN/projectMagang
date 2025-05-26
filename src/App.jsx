@@ -18,6 +18,7 @@ import RFC from './pages/rfc.jsx';
 import Laporan from './pages/laporan.jsx';
 import Kontak from './pages/kontak.jsx';
 import Statistik from './pages/statistik.jsx';
+import NotFound from './components/NotFound.jsx';
 import { Container } from 'react-bootstrap';
 
 function App() {
@@ -35,11 +36,12 @@ function App() {
         <Route path="/kegiatan" element={<Kegiatan />} />
         <Route path='/kegiatan/:halaman' element={<Kegiatan />} />
         <Route path='/karir' element={<Karir />} />
-        <Route path='/karirDetail' element={<KarirDetail />} />
+        <Route path='/karirDetail/halamanKarir/:title' element={<KarirDetail />} />
         <Route path='/rfc' element={<RFC />} />
         <Route path='/laporan' element={<Laporan />} />
         <Route path='/kontak' element={<Kontak />} />
         <Route path='/statistik' element={<Statistik />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </Container>

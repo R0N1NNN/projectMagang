@@ -1,8 +1,15 @@
-import React from 'react'
+import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { cardKarir } from '../datapages/index.jsx';
 import '../css/main.css';
 
 export default function karirDetail() {
+  const { title } = useParams();
+  const karir = cardKarir.find((item) => item.title === title);
+
+  if (!karir) {
+    return <div className="container mt-5">Lowongan Tidak Ditemukan</div>;
+  }
   return (
     <div>
       <header className='homepage'>
@@ -24,10 +31,10 @@ export default function karirDetail() {
         </Container>
       </header>
       <div className='karir-detail-wrapper'>
-        <h1>Junior Programmer</h1>
+        <h1>{karir.title}</h1>
         <h1 className='fs-5 mb-5'>Diskominfotik - Tenaga Ahli Tnologi Informasi</h1>
-        <p><img src='./icon-lokasi.png' /><span className='ms-3'>Jakata Pusat, DKI Jakarta</span></p>
-        <p><img src='./icon-kalender.png' /><span className='ms-3'>Diposting Sehari yang lalu  •  Jumlah lowongan : 1</span></p>
+        <p><img src='./icon-lokasi.png' /><span className='ms-3'>{karir.lokasi}</span></p>
+        <p><img src='./icon-kalender.png' /><span className='ms-3'>Diposting Sehari yang lalu  •  Jumlah lowongan : {karir.posisi}</span></p>
         <p><img src='./icon-batas.png' /><span className='ms-3'>Batas waktu lamaran 1 Januari 2030</span></p>
         <div>
           <h1 className='mt-5'>Persyaratan</h1>

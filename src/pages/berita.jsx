@@ -44,7 +44,7 @@ function berita() {
         </div>
         <div className="berita-grid">
           {filteredBerita.length === 0 && (
-            <div className="text-center text-secondary py-5">Tidak ada lowongan ditemukan.</div>
+            <div className="text-center text-secondary py-5">Tidak ada berita yang dapat ditemukan.</div>
           )}
           {filteredBerita.map((berita) => (
             <div className="berita-card" key={berita.id}>
@@ -73,7 +73,7 @@ function berita() {
         <div className="d-flex justify-content-center pagination-wrapper">
           <Pagination className="mt-4">
             <Pagination.First
-              onClick={() => navigate('/berita/halaman/1')}
+              onClick={() => navigate('/berita')}
               disabled={(parseInt(halaman) || 1) === 1}
             />
             <Pagination.Prev

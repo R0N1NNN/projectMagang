@@ -74,7 +74,7 @@ function kegiatan() {
         <div className="d-flex justify-content-center pagination-wrapper">
           <Pagination className="mt-4">
             <Pagination.First
-              onClick={() => navigate(`/kegiatan/${next}`)}
+              onClick={() => navigate(`/kegiatan`)}
               disabled={(parseInt(halaman) || 1) === 1}
             />
             <Pagination.Prev
@@ -91,7 +91,7 @@ function kegiatan() {
             />
 
             <Pagination.Item
-              href="/kegiatan"
+              onClick={() => navigate('/kegiatan')}
               active={currentPath === '/kegiatan'}
             >
               1
