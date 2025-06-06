@@ -23,7 +23,7 @@ function Footer() {
               Response Team.
             </h1>
           </Col>
-          <Col className="link-footer d-flex flex-column">
+          <Col className="link-footer d-flex flex-column" >
             <h5 className="fw-bold title-footer mb-4">Link</h5>
             <Link to="profile">Profile</Link>
             <Link to="berita">Berita</Link>

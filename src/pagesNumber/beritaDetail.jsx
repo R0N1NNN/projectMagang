@@ -35,14 +35,14 @@ function BeritaDetail() {
           <img src={berita.image} alt={berita.title} className="img-fluid mb-5 rounded d-block mx-auto" />
           <h1 className="mb-2 title-berita-detail">{berita.title}</h1>
           <h5 className="mt-4">{berita.tanggal}</h5>
-          <p className="mt-5 desc-berita-detail text-justify" style={{ margin: '50px 100px 50px', paddingTop: '50px' }}>
+          <p className="mt-5 desc-berita-detail text-justify">
             Ini adalah isi lengkap dari berita berjudul: <strong>{berita.title}</strong>. Konten lengkap dapat dimuat dari database atau API jika diinginkan...
           </p>
         </div>
         <div className="d-flex text-center">
           <button
             onClick={() => window.history.back()}
-            className='button-berita-detail'
+            className='button-berita-detail ms-2'
             style={{
               backgroundColor: '#7c1f15',
               color: '#bfcbe7',

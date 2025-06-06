@@ -29,7 +29,7 @@ export default function profile() {
           <Container>
             <Row className="align-items-center">
               <Col md={6}>
-                <p className='desc-profile mt-5 ms-5' style={{ textAlign: 'justify', lineHeight: '2' }}>
+                <p className='desc-profile mt-5' style={{ textAlign: 'justify', lineHeight: '2' }}>
                   <span className='fw-bold' style={{ color: 'red' }}>Computer Security Incident Response Team (CSIRT)</span> merupakan unit yang bertanggung jawab dalam penanganan
                   insiden keamanan siber, baik secara
                   preventif maupun responsif. Melalui situs ini, CSIRT menyediakan informasi terkini terkait ancaman siber,
@@ -61,10 +61,10 @@ export default function profile() {
             <Row className="gap-3 justify-content-center">
               {cardProfile.map((card) => (
                 <Card className="border-0" style={{ backgroundColor: 'transparent', width: '27rem' }}>
-                  <Card.Img variant="top" src={card.img} className="rounded-2 mx-auto" style={{ width: '400px', height: '220px' }} />
+                  <Card.Img variant="top" src={card.img} className="rounded-2 mx-auto img-card-profile" />
                   <Card.Body>
-                    <Card.Title className="fw-bold mt-3 mx-auto" style={{ color: 'white', textAlign: 'left', width: '400px', fontSize: '16px', padding: '5px 20px 0 20px' }}>{card.title}</Card.Title>
-                    <Card.Text className="mx-auto mb-3" style={{ color: 'white', textAlign: 'left', width: '400px', fontSize: '14px', padding: '10px 20px 0 20px' }}>{card.desc}</Card.Text>
+                    <Card.Title className="fw-bold mt-3 mx-auto" style={{ color: 'white' }}>{card.title}</Card.Title>
+                    <Card.Text className="mx-auto mb-3" style={{ color: 'white' }}>{card.desc}</Card.Text>
                   </Card.Body>
                 </Card>
               ))}

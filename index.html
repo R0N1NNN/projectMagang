@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search"
@@ -36,22 +40,40 @@
         apiHost: "http://localhost:3000",
         theme: {
           button: {
-            backgroundColor: "#4D4D4D",
+            backgroundColor: "#1E3A8A",
             textColor: "#FFFFFF",
             customIconSrc: "./icon-chatbot.png",
             size: "large",
-            dragAndDrop: true,
+            dragAndDrop: false,
           },
           chatWindow: {
             titleAvatarSrc: "./avatar-chatbot.png",
             title: "Agent CSIRT",
             height: 800,
             width: 400,
-            backgroundColor: "#BEBEBE",
+            backgroundColor: "#1E293B",
             welcomeMessage:
-              "Hallo! Saya adalah CSIRT Agent. Bagaimana saya bisa membantu Anda hari ini?",
+              "Hallo! Saya adalah CSIRT Agent. Sebelum saya membantu anda, silahkan beritahu saya Nama, Umur dan Pekerjaan anda terlebih dahulu",
+            botMessage: {
+              backgroundColor: "#D9D9D9",
+              showAvatar: true,
+              avatarSrc: "./avatar-chatbot.png",
+            },
+            userMessage: {
+              backgroundColor: "#B1BED2",
+              textColor: "black",
+            },
+            textInput: {
+              placeholder: "Masukkan Pesan Anda",
+              sendButtonColor: "black",
+            },
+            dateTimeToggle: {
+              date: true,
+              time: true,
+            },
             footer: {
-              text: "CSIRT Agent",
+              textColor: "white",
+              text: "CSIRT Team",
               company: "",
               companyLink: "",
             },

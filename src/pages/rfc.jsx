@@ -8,9 +8,8 @@ export default function rfc() {
         <Container>
           <Row className='header-box pt-lg-5'>
             <Col className='ps-0'>
-              <h1 className='profile text-start'>
-                RFC2350<br />
-                JakartaPROV-CSIRT
+              <h1 className='profile'>
+                RFC2350
               </h1>
             </Col>
             <Col className="position-relative">
@@ -23,10 +22,10 @@ export default function rfc() {
           </Row>
         </Container>
       </header>
-      <div className='rfc-wrapper' style={{ padding: '100px', display: 'flex', justifyContent: 'center' }}>
-        <div style={{ border: '1px solid white', height: '100vh', width: '90%' }}>
+      <div className='rfc-wrapper' style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className='rfc' style={{ border: '1px solid white', height: '100vh', width: '100%' }}>
           <iframe
-            src="./rfc2350.pdf"
+            src="/rfc2350.pdf"
             width="100%"
             height="100%"
             style={{ border: 'none' }}
@@ -34,6 +33,6 @@ export default function rfc() {
           />
         </div>
       </div>
-    </div>
+    </div >
   )
 }

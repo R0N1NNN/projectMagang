@@ -11,7 +11,7 @@ function NavbarComponent() {
   };
 
   return (
-    <Navbar expand="lg" fixed='top'>
+    <Navbar expand="lg" fixed='top' variant='dark'>
       <Container>
         <Navbar.Brand as={NavLink} to="/">
           <img
@@ -44,7 +44,7 @@ function NavbarComponent() {
             <NavLink to="/kontak" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Kontak Kami</NavLink>
 
           </Nav>
-          <div className='input-group'>
+          <div className='input-group abc mx-auto'>
             <input type="text" placeholder='Search' className="search-input" />
             <i class="fa-solid fa-magnifying-glass" style={{ color: 'black' }}></i>
           </div>

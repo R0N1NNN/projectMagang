@@ -10,7 +10,7 @@ export default function Statistik() {
         <Container>
           <Row className='header-box pt-lg-5'>
             <Col className='ps-0'>
-              <h1 className='profile text-start'>
+              <h1 className='profile'>
                 Statistik
               </h1>
             </Col>

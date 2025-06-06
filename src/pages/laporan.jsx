@@ -56,14 +56,12 @@ export default function laporan() {
       .sendForm('service_35zz5vq', 'template_2jn9c27', form.current, {
         publicKey: 'Xw0Iu8t5mHaLHk3g2',
       })
-      .then(
-        () => {
-          alert('Laporan berhasil dikirim!');
-        },
-        (error) => {
-          alert('Pengiriman gagal: ' + error.text);
-        },
-      );
+      .then(() => {
+        alert('Form Berhasil Dikirim');
+        form.current.reset(); // reset form jika perlu
+      }, (error) => {
+        alert('Pengiriman gagal: ' + error.text);
+      });
   };
 
   return (
@@ -72,7 +70,7 @@ export default function laporan() {
         <Container>
           <Row className="header-box pt-lg-5">
             <Col className="ps-0">
-              <h1 className="profile text-start">Lapor Insiden Siber</h1>
+              <h1 className="profile">Lapor Insiden Siber</h1>
             </Col>
             <Col className="position-relative">
               <img

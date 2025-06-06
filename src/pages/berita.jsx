@@ -25,7 +25,7 @@ function berita() {
         <Container>
           <Row className="header-box">
             <Col>
-              <h1 className="profile text-start">Berita</h1>
+              <h1 className="profile">Berita</h1>
             </Col>
             <Col>
               <img

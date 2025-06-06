@@ -138,7 +138,7 @@ function Home() {
               <br />
               Tenaga Ahli Teknologi Informasi
             </h1>
-            <div className="d-flex align-items-center" style={{ height: "200px" }}>
+            <div className="d-flex align-items-center rekrut-content-1">
               <h4 className="rekrut-content m-0">
                 Bidang Siber, Sandi dan Aplikasi Dinas Komunikasi, Informatika
                 dan Statistik Provinsi DKI Jakarta, membuka kesempatan kepada Warga
@@ -154,7 +154,8 @@ function Home() {
         <Container className='d-flex justify-content-between align-items-center mx-auto mb-4 title-kegiatan'>
           <h1 className='fw-bold text-start me-5'>Kegiatan Terbaru</h1>
           <Link to='/kegiatan' className='text-decoration-none kegiatan-lainnya'>
-            Jelajahi Kegiatan Lainnya<i className="fa-solid fa-chevron-right icon-kegiatan-lain ms-2"></i>
+            Jelajahi Kegiatan Lainnya
+            <i className="fa-solid fa-chevron-right icon-kegiatan-lain ms-2"></i>
           </Link>
         </Container>
         <div className='kegiatan-wrapper'>

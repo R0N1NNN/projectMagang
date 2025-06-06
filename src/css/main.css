@@ -13,6 +13,7 @@
 }
 
 body {
+  overflow-x: hidden;
   background: var(--primary-color);
 }
 
@@ -545,10 +546,9 @@ button:hover {
 }
 .kegiatan-grid-custom {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 36px;
-  padding: 0 24px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 0 20px;
 }
 
 .kegiatan-card-custom {
@@ -811,6 +811,11 @@ button:hover {
   padding: 100px 0 250px 0;
 }
 
+.img-card-profile {
+  width: 400px;
+  height: 220px;
+}
+
 /* Visi Misi Modern */
 .visi-misi-modern {
   display: flex;
@@ -975,42 +980,6 @@ button:hover {
 }
 
 /* Responsive berita grid */
-@media (max-width: 900px) {
-  .berita-grid {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 18px;
-    padding: 0 8px;
-  }
-  .berita-card {
-    min-height: 340px;
-    max-width: 100%;
-  }
-  .berita-card-img {
-    height: 150px;
-  }
-}
-
-@media (max-width: 600px) {
-  .berita-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 0 2px;
-  }
-  .berita-card {
-    min-height: 260px;
-    padding: 0;
-  }
-  .berita-card-img {
-    height: 110px;
-  }
-  .berita-card-body {
-    padding: 14px 10px 10px 10px;
-  }
-  .berita-card-title {
-    font-size: 1rem;
-    min-height: 32px;
-  }
-}
 
 /* responsive berita grid end */
 
@@ -1046,12 +1015,10 @@ button:hover {
 /* Panduan Section */
 .halaman-panduan {
   margin-top: 150px;
-  padding: 60px 0 80px 0;
+  padding: 60px 80px 80px;
   background: var(--secondary-color);
   border-radius: 24px;
   margin-bottom: 100px;
-  max-width: 1400px;
-  min-height: 70vh;
 }
 
 .panduan-wrapper {
@@ -1069,7 +1036,7 @@ button:hover {
   border-radius: 16px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.295);
   transition: transform 0.2s;
-  height: 150px;
+  height: 180px;
   border: none;
 }
 
@@ -1367,10 +1334,9 @@ button:hover {
   border-radius: 10px;
   background-color: var(--secondary-color);
   height: auto;
-  padding-left: 100px;
+  padding: 80px;
   margin-bottom: 80px;
   margin-top: 150px;
-  padding-top: 50px;
 }
 
 .footer-content {
@@ -1413,116 +1379,13 @@ button:hover {
 
 .footer-hak {
   color: var(--desc-color);
-  text-align: center;
   font-size: 16px;
   padding-top: 40px;
   margin-bottom: 50px;
 }
 
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-  }
-
-  .desc {
-    width: 100%;
-    height: auto;
-    text-align: justify;
-    padding: 0 10px;
-  }
-
-  .title-footer {
-    padding-top: 20px;
-  }
-
-  .image-footer {
-    height: 50px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .hak-cipta {
-    text-align: center;
-    padding: 10px;
-    padding-top: 80px;
-  }
-}
-
-@media (max-width: 1710px) {
-  .input-berita {
-    width: 80%;
-    margin: 0 auto; /* Center secara horizontal */
-  }
-
-  .berita-item {
-    flex-direction: column;
-    align-items: center; /* agar gambar tetap di tengah */
-    text-align: left; /* teks tetap kiri */
-  }
-
-  .berita-text {
-    width: 100%;
-    text-align: left; /* pastikan teks kiri */
-  }
-
-  .berita-text h4 {
-    font-weight: bold;
-  }
-
-  .berita-text h5,
-  h6 {
-    font-size: 1.1rem;
-  }
-
-  .berita-img {
-    height: auto;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-}
-
-@media (max-width: 991px) {
-  .karir-grid {
-    gap: 1.2rem;
-  }
-  .karir-card {
-    min-height: 340px;
-  }
-}
-
-@media (max-width: 768px) {
-  .karir-header .karir-title {
-    font-size: 1.5rem;
-  }
-  .karir-header .karir-desc {
-    font-size: 1rem;
-  }
-  .karir-img {
-    width: 70px;
-    height: 70px;
-  }
-  .karir-card {
-    min-height: 300px;
-  }
-  .input-karir {
-    max-width: 100%;
-    height: 2.3rem;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 900px) {
-  .neon-stats-grid {
-    flex-direction: column;
-    gap: 18px;
-  }
-  .neon-stats-card {
-    min-width: 0;
-    width: 100%;
-  }
-}
-
 /* Kontak Section */
+
 .kontak-card-modern {
   min-width: 220px;
   max-width: 270px;
@@ -1569,7 +1432,7 @@ button:hover {
 .accordion-item {
   border: none;
   background: var(--secondary-color);
-  border-radius: 10px;
+  border-radius: 16px;
 }
 
 .accordion-header,
@@ -1591,89 +1454,32 @@ button:hover {
 .accordion-body {
   background-color: var(--secondary-color);
 }
-/* Kontak Section End */
-
-@media (max-width: 900px) {
-  .kontak-card-modern {
-    min-width: 160px;
-    max-width: 100%;
-    padding: 24px 12px 18px 12px;
-  }
-}
-
 /* Responsive */
-@media (max-width: 600px) {
-  .pagination-wrapper .pagination {
-    padding: 6px 4px;
-    gap: 4px;
-  }
-  .pagination .page-link {
-    min-width: 28px;
-    min-height: 28px;
-    font-size: 0.95rem;
-  }
-}
 
-@media (max-width: 900px) {
-  .statistik-data-section {
-    padding: 28px 8px 18px 8px;
-    border-radius: 14px;
-  }
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-  .hero-img {
-    margin-left: 0;
-    width: 100%;
-    height: auto;
+@media (max-width: 390px) {
+  .halaman-rekrut {
+    padding: 70px;
   }
 
-  .homepage .header-box h1 {
-    font-size: 1.8rem;
-    text-align: center;
+  .halaman-rekrut .rekrut-content-1 {
+    margin-bottom: 300px;
+    height: 300px;
   }
 
-  .homepage .header-box p {
-    font-size: 1rem;
-    text-align: center;
-  }
-
-  .halaman-berita {
-    padding: 20px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-
-  .berita-title-section {
-    font-size: 1.5rem;
-  }
-
-  .news-group {
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-  }
-
-  .news-title h2 {
-    width: 100%;
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
-  .news-content {
-    width: 100%;
-    font-size: 0.9rem;
-    text-align: justify;
-  }
-
-  .news-image {
-    width: 100%;
-    margin-bottom: 20px;
+  .halaman-rekrut .rekrut-content-1 h4 {
+    font-size: 23px;
   }
 }
 
 @media (max-width: 480px) {
+  .halaman-panduan {
+    padding: 80px 0 60px 0;
+  }
+
+  .input-group i {
+    display: none;
+  }
+
   .homepage .header-box h1 {
     font-size: 1.5rem;
   }
@@ -1707,5 +1513,425 @@ button:hover {
     min-width: 24px;
     min-height: 24px;
     font-size: 0.8rem;
+  }
+
+  .halaman-rekrut .rekrut-title {
+    font-size: 30px;
+  }
+
+  .rekrut-content-1 {
+    text-align: justify;
+    margin-bottom: 120px;
+  }
+
+  .rekrut-content-1 h4 {
+    font-size: 20px;
+  }
+
+  .halaman-rekrut .button-news {
+    font-size: 0.8rem;
+  }
+
+  .title-kegiatan h1 {
+    font-size: 1rem;
+  }
+  .kegiatan-lainnya {
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+
+  .img-card-profile {
+    width: 80%;
+    height: auto;
+  }
+
+  .berita-grid .berita-card {
+    padding: 20px;
+  }
+
+  .input-berita .search-input {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .input-berita .icon {
+    display: none;
+  }
+
+  .card-panduan-item {
+    height: auto;
+  }
+
+  .card-panduan .card-panduan-title {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+  }
+
+  .panduan-video-card {
+    width: 80%;
+  }
+
+  .rfc-wrapper {
+    padding: 0;
+  }
+
+  .statistik-data-title {
+    font-size: 1.7rem;
+    text-align: center;
+  }
+
+  .statistik-data-section p {
+    font-size: 1rem;
+  }
+
+  .accordion-item {
+    border: none;
+    background: var(--secondary-color);
+    border-radius: 16px;
+  }
+
+  .accordion-header,
+  .accordion-button {
+    background-color: var(--secondary-color);
+    color: #fff;
+  }
+
+  .accordion-button:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+  }
+
+  .accordion-button:not(.collapsed) {
+    background-color: var(--secondary-color);
+    color: #fff;
+  }
+
+  .accordion-body {
+    background-color: var(--secondary-color);
+  }
+
+  .footer {
+    padding: 10px;
+  }
+
+  .image-footer {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer-desc {
+    margin: 0 auto;
+  }
+
+  .link-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-hak {
+    text-align: center;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .halaman-kegiatan {
+    padding: 20px;
+  }
+
+  .halaman-kegiatan h2 {
+    padding-top: 50px;
+  }
+
+  .pagination-wrapper .pagination {
+    padding: 6px 4px;
+    gap: 4px;
+  }
+  .pagination .page-link {
+    min-width: 28px;
+    min-height: 28px;
+    font-size: 0.95rem;
+  }
+
+  .halaman-rekrut .rekrut-content {
+    height: 200px;
+  }
+
+  .halaman-rekrut .button-news {
+    margin-top: 100px;
+  }
+
+  .berita-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 0 2px;
+  }
+  .berita-card {
+    min-height: 260px;
+    padding: 0;
+  }
+  .berita-card-img {
+    height: 110px;
+  }
+  .berita-card-body {
+    padding: 14px 10px 10px 10px;
+  }
+  .berita-card-title {
+    font-size: 1rem;
+    min-height: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-img {
+    display: none;
+  }
+
+  .header-box {
+    max-width: 100vw;
+    padding: 10px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .halaman-berita {
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  .berita-title-section {
+    font-size: 1.5rem;
+  }
+
+  .news-group {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .news-title h2 {
+    width: 100%;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .news-title h3 {
+    width: 205px;
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .news-content {
+    width: 100%;
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+
+  .news-image {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .kegiatan-grid-custom {
+    grid-template-columns: 1fr !important;
+    padding: 20px 0;
+  }
+
+  .kegiatan-card-custom {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .kegiatan-card-custom:hover {
+    transform: none !important;
+  }
+
+  .kegiatan-img-wrapper-custom {
+    height: 200px;
+  }
+
+  .kegiatan-card-body-custom {
+    padding: 20px 16px;
+  }
+
+  .kegiatan-card-title-custom {
+    font-size: 1.1rem;
+    min-height: unset;
+  }
+
+  .kegiatan-card-date-custom {
+    font-size: 0.95rem;
+  }
+
+  .karir-header .karir-title {
+    font-size: 1.5rem;
+  }
+  .karir-header .karir-desc {
+    font-size: 1rem;
+  }
+  .karir-img {
+    width: 70px;
+    height: 70px;
+  }
+  .karir-card {
+    min-height: 300px;
+  }
+  .input-karir {
+    max-width: 100%;
+    height: 2.3rem;
+    font-size: 1rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .desc {
+    width: 100%;
+    height: auto;
+    text-align: justify;
+    padding: 0 10px;
+  }
+
+  .title-footer {
+    padding-top: 20px;
+  }
+
+  .image-footer {
+    height: 50px;
+  }
+}
+
+@media (max-width: 900px) {
+  .dropdown-grid-wrapper {
+    grid-template-columns: 1fr !important;
+  }
+
+  .menu-dark .dropdown-menu {
+    padding: 20px;
+    min-width: auto !important;
+    width: fit-content !important;
+  }
+
+  .statistik-data-section {
+    padding: 28px 8px 18px 8px;
+    border-radius: 14px;
+  }
+
+  .kontak-card-modern {
+    min-width: 160px;
+    max-width: 100%;
+    padding: 24px 12px 18px 12px;
+  }
+
+  .neon-stats-grid {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .neon-stats-card {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .berita-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    padding: 0 8px;
+  }
+  .berita-card {
+    min-height: 340px;
+    max-width: 100%;
+  }
+  .berita-card-img {
+    height: 150px;
+  }
+
+  .event-item {
+    flex-direction: column !important;
+    text-align: center;
+    width: 90% !important;
+  }
+
+  .event-img {
+    width: 100%; /* gambar full width */
+    height: auto;
+  }
+
+  .event-text {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .karir-grid {
+    gap: 1.2rem;
+  }
+  .karir-card {
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .news-content {
+    display: none;
+  }
+
+  .input-group {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    width: 80%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hak-cipta {
+    text-align: center;
+    padding: 10px;
+    padding-top: 80px;
+  }
+}
+
+@media (max-width: 1710px) {
+  .input-group.abc {
+    width: 100%; /* atau max-width: 600px; untuk kontrol */
+  }
+  .search-input {
+    width: 100%;
+  }
+
+  .input-berita {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .berita-item {
+    flex-direction: column;
+    align-items: center; /* agar gambar tetap di tengah */
+    text-align: left; /* teks tetap kiri */
+  }
+
+  .berita-text {
+    width: 100%;
+    text-align: left; /* pastikan teks kiri */
+  }
+
+  .berita-text h4 {
+    font-weight: bold;
+  }
+
+  .berita-text h5,
+  h6 {
+    font-size: 1.1rem;
+  }
+
+  .berita-img {
+    height: auto;
+    width: 100%;
+    margin-bottom: 20px;
   }
 }
