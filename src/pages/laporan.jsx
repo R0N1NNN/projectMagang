@@ -6,6 +6,7 @@ import emailjs from '@emailjs/browser';
 export default function laporan() {
   const form = useRef();
   const [ticketNumber, setTicketNumber] = useState('');
+  const [showNotification, setShowNotification] = useState(false);
 
   const randomizeTicket = () => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -46,6 +47,8 @@ export default function laporan() {
     const newTicket = randomizeTicket();
     setTicketNumber(newTicket);
 
+
+
     const input = document.createElement("input");
     input.type = "hidden";
     input.name = "ticketNumber";
@@ -57,11 +60,12 @@ export default function laporan() {
         publicKey: 'Xw0Iu8t5mHaLHk3g2',
       })
       .then(() => {
-        alert('Form Berhasil Dikirim');
+        setShowNotification(true);
+        setTimeout(() => {
+          setShowNotification(false);
+        }, 3000); // notifikasi hilang setelah 3 detik
         form.current.reset(); // reset form jika perlu
-      }, (error) => {
-        alert('Pengiriman gagal: ' + error.text);
-      });
+      })
   };
 
   return (
@@ -82,6 +86,11 @@ export default function laporan() {
           </Row>
         </Container>
       </header>
+      {showNotification && (
+        <div className="custom-notification">
+          Form Berhasil Dikirim
+        </div>
+      )}
       <div className="mt-5 mb-3">
         <Container className="rounded-5" style={{ padding: "75px", marginTop: '150px', border: '1px solid var(--laporan-color)' }}>
           <Col md={12}>

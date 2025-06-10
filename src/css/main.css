@@ -1454,6 +1454,21 @@ button:hover {
 .accordion-body {
   background-color: var(--secondary-color);
 }
+
+.custom-notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #198754; /* hijau sukses */
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  font-weight: bold;
+}
+
 /* Responsive */
 
 @media (max-width: 390px) {
