@@ -12,6 +12,13 @@
   --red-color: #7c1f15;
 }
 
+html,
+body {
+  transform: none !important;
+  zoom: 1 !important;
+  font-size: 100% !important;
+}
+
 body {
   overflow-x: hidden;
   background: var(--primary-color);
