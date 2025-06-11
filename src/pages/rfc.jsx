@@ -25,7 +25,7 @@ export default function rfc() {
       <div className='rfc-wrapper' style={{ display: 'flex', justifyContent: 'center' }}>
         <div className='rfc' style={{ border: '1px solid white', height: '100vh', width: '100%' }}>
           <iframe
-            src="./rfc2350.pdf"
+            src="/rfc2350.pdf"
             width="100%"
             height="100%"
             style={{ border: 'none' }}
