@@ -25,7 +25,7 @@ function panduan() {
             </Col>
             <Col className="position-relative">
               <img
-                src="./icon-berita.png"
+                src={`${import.meta.env.BASE_URL}icon-berita.png`}
                 alt="hero-img"
                 className="hero-img"
               />

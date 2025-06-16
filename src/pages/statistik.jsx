@@ -16,7 +16,7 @@ export default function Statistik() {
             </Col>
             <Col className="position-relative">
               <img
-                src="./icon-statistik.png"
+                src={`${import.meta.env.BASE_URL}icon-statistik.png`}
                 alt="hero-img"
                 className="hero-img"
               />

@@ -30,12 +30,12 @@ function NavbarComponent() {
 
             <NavDropdown title="Informasi & Edukasi" id="basic-nav-dropdown" className="menu-dark" renderMenuOnMount={true}>
               <div className="dropdown-grid-wrapper">
-                <NavLink to="/berita" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-berita.png' />Berita</NavLink>
-                <NavLink to="/event" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-event.png' />Event</NavLink>
-                <NavLink to="/panduan" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-panduan.png' />Panduan & Infografis</NavLink>
-                <NavLink to="/kegiatan" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-kegiatan.png' />Kegiatan</NavLink>
-                <NavLink to="/karir" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-karir.png' />Karir</NavLink>
-                <NavLink to="/statistik" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src='./drop-statistik.png' />Statistik</NavLink>
+                <NavLink to="/berita" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-berita.png`} />Berita</NavLink>
+                <NavLink to="/event" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-event.png`} />Event</NavLink>
+                <NavLink to="/panduan" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-panduan.png`} />Panduan & Infografis</NavLink>
+                <NavLink to="/kegiatan" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-kegiatan.png`} />Kegiatan</NavLink>
+                <NavLink to="/karir" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-karir.png`} />Karir</NavLink>
+                <NavLink to="/statistik" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-statistik.png`} />Statistik</NavLink>
               </div>
             </NavDropdown>
 

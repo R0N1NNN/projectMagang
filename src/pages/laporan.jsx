@@ -78,7 +78,7 @@ export default function laporan() {
             </Col>
             <Col className="position-relative">
               <img
-                src="./icon-laporan.png"
+                src={`${import.meta.env.BASE_URL}icon-laporan.png`}
                 alt="hero-img"
                 className="hero-img"
               />

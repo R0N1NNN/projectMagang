@@ -15,7 +15,7 @@ function kontak() {
             </Col>
             <Col className="position-relative">
               <img
-                src="./icon-kontak.png"
+                src={`${import.meta.env.BASE_URL}icon-kontak.png`}
                 alt="hero-img"
                 className="hero-img"
               />

@@ -24,7 +24,7 @@ function karir() {
             </Col>
             <Col className="position-relative">
               <img
-                src="./icon-profile.png"
+                src={`${import.meta.env.BASE_URL}icon-profile.png`}
                 alt="hero-img"
                 className="hero-img"
               />

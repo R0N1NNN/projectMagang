@@ -14,7 +14,7 @@ export default function rfc() {
             </Col>
             <Col className="position-relative">
               <img
-                src="./icon-rfc.png"
+                src={`${import.meta.env.BASE_URL}icon-rfc.png`}
                 alt="hero-img"
                 className="hero-img"
               />

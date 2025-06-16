@@ -12,19 +12,19 @@ function Home() {
   const kegiatan = [
     {
       id: 1,
-      image: './kegiatan1.png',
+      image: `${import.meta.env.BASE_URL}kegiatan1.png`,
       title: 'Acara bimtek siberchat tanggal 23 maret 2021',
       tanggal: '2024-12-20'
     },
     {
       id: 2,
-      image: './kegiatan2.png',
+      image: `${import.meta.env.BASE_URL}kegiatan2.png`,
       title: 'Pelatihan Malware Analysis',
       tanggal: '2024-12-20'
     },
     {
       id: 3,
-      image: './kegiatan3.png',
+      image: `${import.meta.env.BASE_URL}kegiatan3.png`,
       title: 'Seminar drill test',
       tanggal: '2024-12-20'
     }
@@ -58,7 +58,7 @@ function Home() {
             </Col>
             <Col>
               <img
-                src="./icon-nav.png"
+                src={`${import.meta.env.BASE_URL}icon-nav.png`}
                 alt="hero-img"
                 className="hero-img ms-5"
               />
