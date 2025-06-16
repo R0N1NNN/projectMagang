@@ -10,10 +10,10 @@
   "navigationColorDark": "#000000",
   "navigationDividerColor": "#000000",
   "navigationDividerColorDark": "#000000",
-  "backgroundColor": "#7CC0FF",
+  "backgroundColor": "#FFFFFF",
   "enableNotifications": true,
   "startUrl": "/projectMagang/",
-  "iconUrl": "https://r0n1nnn.github.io/android-chrome-512x512.png",
+  "iconUrl": "https://r0n1nnn.github.io/projectMagang/android-chrome-512x512.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
     "path": "C:\\Users\\marwn\\Documents\\Tugas\\Semester 6\\projectMagang\\android.keystore",
