@@ -1,5 +1,5 @@
-import BeritaImage1 from '/berita1.png'
-import BeritaImage2 from '/berita2.png'
+import BeritaImage1 from './assets/berita1.png'
+import BeritaImage2 from './assets/berita2.png'
 import BeritaImage3 from '/berita3.png'
 import BeritaImage4 from '/berita4.png'
 import BeritaImage5 from '/berita5.png'
