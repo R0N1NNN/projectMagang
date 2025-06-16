@@ -1,7 +1,7 @@
 {
   "name": "CSIRT",
   "short_name": "CSIRT",
-  "start_url": "/",
+  "start_url": "/projectMagang/",
   "scope": "/",
   "icons": [
     {
