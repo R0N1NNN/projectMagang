@@ -1,8 +1,8 @@
 {
   "name": "CSIRT",
   "short_name": "CSIRT",
-  "start_url": "/projectMagang/",
-  "scope": "/projectMagang/",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "android-chrome-192x192.png",
