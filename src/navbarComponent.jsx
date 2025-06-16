@@ -15,7 +15,7 @@ function NavbarComponent() {
       <Container>
         <Navbar.Brand as={NavLink} to="/">
           <img
-            src="./logo.png"
+            src={`${import.meta.env.BASE_URL}logo.png`}
             alt="CSIRT Logo"
             height='70px'
             width='auto'
