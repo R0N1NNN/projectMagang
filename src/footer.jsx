@@ -8,14 +8,7 @@ function Footer() {
     <Container>
       <div className='footer'>
         <Row className='footer-content mt-3'>
-          <Col lg={5} md={12}>
-            <Navbar.Brand as={NavLink} to="/">
-              <img
-                src={`${import.meta.env.BASE_URL}logo.png`}
-                alt="CSIRT Logo"
-                className='image-footer'
-              />
-            </Navbar.Brand>
+          <Col lg={5} md={12} className='mt-5'>
             <h1 className='footer-desc'>DKI Prov CSIRT - CSIRT Computer Security Incident Response
               Team ditetapkan oleh Sekretaris Daerah Provinsi DKI Jakarta
               dalam Keputusan Penjabat Sekretaris Daerah DKI Jakarta Nomor:

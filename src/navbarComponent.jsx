@@ -17,7 +17,7 @@ function NavbarComponent() {
           <img
             src={`${import.meta.env.BASE_URL}logo.png`}
             alt="CSIRT Logo"
-            height='70px'
+            height='40px'
             width='auto'
           />
         </Navbar.Brand>
