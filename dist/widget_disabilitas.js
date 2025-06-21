@@ -466,7 +466,7 @@ input[type="radio"][checked="checked"][class="radio_widget_dsb"] {
 	display         : flex;
 	text-align      : center;
 	padding-right   : 1%;
-    padding-bottom   : 1%;
+  padding-bottom   : 1%;
 	flex-direction  : column;
 	align-items     : center;
 	justify-content : center;
@@ -1246,7 +1246,6 @@ height  : 28px;
 	display         : flex;
 	flex-direction  : column;
 	bottom          : 0;
-	z-index         : 999999999999;
 	position        : fixed;
 	left            : 0;
 	background-color: ` +
@@ -1624,7 +1623,6 @@ height  : 28px;
 
 	.group_action_setting_layout {
 		padding-bottom: 2vh;
-
 	}
 .column_cek_version_dsb{
     margin-top: -2vh; 

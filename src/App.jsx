@@ -19,7 +19,7 @@ import Laporan from './pages/laporan.jsx';
 import Kontak from './pages/kontak.jsx';
 import Statistik from './pages/statistik.jsx';
 import Login from './pages/login.jsx';
-import Verify from './pages/verify.jsx';
+import Verify from './pages/Verify.jsx';
 import NotFound from './components/NotFound.jsx';
 
 function App() {
