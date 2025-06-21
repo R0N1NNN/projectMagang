@@ -11,13 +11,22 @@ import lupaAnimasi from '../../public/animasiLupa.json';
 import emailjs from '@emailjs/browser';
 
 // Simpan akun ke localStorage
-const saveUserData = (email, name, password) => {
+const saveUserData = (email, name, password, occupation, birthDate) => {
     const cleanEmail = email.trim().toLowerCase();
-    const data = JSON.stringify({ name, email: cleanEmail, password });
+    const data = JSON.stringify({
+        name,
+        email: cleanEmail,
+        password,
+        occupation,
+        birthDate
+    });
     localStorage.setItem(`user-${cleanEmail}`, data);
 };
 
+
 function Login() {
+    const [occupation, setOccupation] = useState('');
+    const [birthDate, setBirthDate] = useState('');
     const [isRegister, setIsRegister] = useState(false);
     const [isForgotPassword, setIsForgotPassword] = useState(false);
     const [isResetting, setIsResetting] = useState(false);
@@ -45,7 +54,7 @@ function Login() {
             return;
         }
 
-        saveUserData(email, name, password);
+        saveUserData(email, name, password, occupation, birthDate);
 
         const cleanEmail = email.trim().toLowerCase();
         const templateParams = {
@@ -146,9 +155,50 @@ function Login() {
 
                     {isRegister ? (
                         <form onSubmit={handleRegister}>
-                            <input type="text" placeholder="Nama Lengkap" value={name} onChange={(e) => setName(e.target.value)} className="text-black" />
-                            <input type="email" placeholder="Alamat Email" value={email} onChange={(e) => setEmail(e.target.value)} className="text-black" />
-                            <input type="password" placeholder="Kata Sandi" value={password} onChange={(e) => setPassword(e.target.value)} className="text-black" />
+                            <input
+                                type="text"
+                                placeholder="Nama Lengkap"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                className="text-black"
+                            />
+                            <input
+                                type="email"
+                                placeholder="Alamat Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="text-black"
+                            />
+                            <input
+                                type="password"
+                                placeholder="Kata Sandi"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="text-black"
+                            />
+
+                            <select
+                                className="form-select text-black mb-3"
+                                value={occupation}
+                                onChange={(e) => setOccupation(e.target.value)}
+                            >
+                                <option value="">Pilih Pekerjaan/Kesibukan</option>
+                                <option value="Mahasiswa">Mahasiswa</option>
+                                <option value="Pengajar">Pengajar</option>
+                                <option value="UI/UX Designer">UI/UX Designer</option>
+                                <option value="Web Developer">Web Developer</option>
+                                <option value="IT Security">IT Security</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+
+                            <label className="text-black">Tanggal Lahir:</label>
+                            <input
+                                type="date"
+                                value={birthDate}
+                                onChange={(e) => setBirthDate(e.target.value)}
+                                className="form-control text-black"
+                            />
+
                             <button type="submit">Daftar</button>
                             <p className="text-center mt-3 text-black">
                                 Sudah punya akun? <span className="link" onClick={() => setIsRegister(false)}>Login</span>

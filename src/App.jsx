@@ -16,10 +16,12 @@ import Karir from './pages/karir.jsx';
 import KarirDetail from './pagesNumber/karirDetail.jsx';
 import RFC from './pages/rfc.jsx';
 import Laporan from './pages/laporan.jsx';
+import Ticket from './pages/ticket.jsx'
 import Kontak from './pages/kontak.jsx';
 import Statistik from './pages/statistik.jsx';
 import Login from './pages/login.jsx';
 import Verify from './pages/Verify.jsx';
+import Admin from './pages/admin.jsx'
 import NotFound from './components/NotFound.jsx';
 
 function App() {
@@ -40,6 +42,7 @@ function App() {
         <Route path='/karirDetail/halamanKarir/:title' element={<KarirDetail />} />
         <Route path='/rfc' element={<RFC />} />
         <Route path='/laporan' element={<Laporan />} />
+        <Route path='/ticket' element={<Ticket />} />
         <Route path='/kontak' element={<Kontak />} />
         <Route path='/statistik' element={<Statistik />} />
         <Route path="*" element={<NotFound />} />
@@ -50,6 +53,7 @@ function App() {
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />
         <Route path="/Verify" element={<Verify />} />
+        <Route path="/admin" element={<Admin />} />
       </Route>
     </Routes>
   );

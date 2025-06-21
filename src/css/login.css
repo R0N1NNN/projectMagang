@@ -62,6 +62,14 @@
   justify-content: center;
 }
 
+.login-form select {
+  border-radius: 999px;
+}
+
+.login-form option {
+  color: black;
+}
+
 .login-form form {
   display: flex;
   flex-direction: column;
@@ -128,3 +136,16 @@
     padding: 4rem 2.5rem 4rem 1.5rem;
   }
 }
+
+/* Halaman Admin */
+.admin-header {
+  background-color: #ffa500; /* orange */
+  color: white;
+  padding: 1.2rem;
+  margin: 0;
+  border-radius: 12px;
+  width: 100%;
+  font-weight: bold;
+}
+
+/* End Halaman Admin */

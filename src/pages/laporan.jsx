@@ -20,6 +20,14 @@ export default function laporan() {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    // ✅ Cek apakah user sudah login
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (!isLoggedIn) {
+      alert("Harus login terlebih dahulu.");
+      return;
+    }
+
+    // ✅ Validasi field wajib
     const requiredFields = [
       { name: "firstName", label: "First Name" },
       { name: "lastName", label: "Last Name" },
@@ -44,28 +52,50 @@ export default function laporan() {
       }
     }
 
+    // ✅ Generate ticket
     const newTicket = randomizeTicket();
     setTicketNumber(newTicket);
 
-
-
+    // ✅ Tambahkan input ticket ke form
     const input = document.createElement("input");
     input.type = "hidden";
     input.name = "ticketNumber";
     input.value = newTicket;
     form.current.appendChild(input);
 
+
+    const ticketData = {
+      ticketNumber: newTicket,
+      domain: formData.get("domainName"),
+      url: formData.get("impactedUrl"),
+      date: formData.get("incidentDate"),
+      type: formData.get("incidentType"),
+      impact: formData.get("incidentImpact"),
+      description: formData.get("incidentDescription"),
+      status: "Diproses",
+      createdAt: new Date().toISOString()
+    };
+
+    const existing = JSON.parse(localStorage.getItem("tickets") || "[]");
+    existing.push(ticketData);
+    localStorage.setItem("tickets", JSON.stringify(existing));
+
+    // ✅ Kirim via emailjs
     emailjs
-      .sendForm('service_35zz5vq', 'template_2jn9c27', form.current, {
-        publicKey: 'Xw0Iu8t5mHaLHk3g2',
+      .sendForm("service_35zz5vq", "template_2jn9c27", form.current, {
+        publicKey: "Xw0Iu8t5mHaLHk3g2",
       })
       .then(() => {
         setShowNotification(true);
         setTimeout(() => {
           setShowNotification(false);
-        }, 3000); // notifikasi hilang setelah 3 detik
-        form.current.reset(); // reset form jika perlu
+        }, 3000);
+        form.current.reset();
       })
+      .catch((err) => {
+        console.error("Gagal kirim:", err);
+        alert("Gagal mengirim laporan.");
+      });
   };
 
   return (
@@ -94,6 +124,11 @@ export default function laporan() {
       <div className="mt-5 mb-3">
         <Container className="rounded-5" style={{ padding: "75px", marginTop: '150px', border: '1px solid var(--laporan-color)' }}>
           <Col md={12}>
+            <div className="text-end mb-4">
+              <Button variant="primary" onClick={() => window.location.href = "/#/ticket"}>
+                Lihat Ticket Laporan Anda
+              </Button>
+            </div>
             <Form ref={form} onSubmit={sendEmail}>
               <h3 className="mb-4">Data Diri</h3>
               <Row className="mb-5 g-5">
