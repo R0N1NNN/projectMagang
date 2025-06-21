@@ -102,14 +102,6 @@ button:hover {
   color: #000;
 }
 
-.search-input {
-  background-color: #e2e2e2;
-  height: 100%;
-  border: none;
-  flex: 1; /* ini yang bikin full */
-  font-size: 1rem;
-}
-
 .dropdown-toggle::after {
   display: none !important;
 }

@@ -1,8 +1,8 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
-import NavbarComponent from './navbarComponent.jsx';
-import Footer from './footer.jsx';
+import MainLayout from './pages/MainLayout.jsx';
+import AuthLayout from './pages/AuthLayout.jsx';
 
 // Halaman
 import Home from './pages/home.jsx';
@@ -18,14 +18,15 @@ import RFC from './pages/rfc.jsx';
 import Laporan from './pages/laporan.jsx';
 import Kontak from './pages/kontak.jsx';
 import Statistik from './pages/statistik.jsx';
+import Login from './pages/login.jsx';
+import Verify from './pages/verify.jsx';
 import NotFound from './components/NotFound.jsx';
-import { Container } from 'react-bootstrap';
 
 function App() {
   return (
-    <Container>
-      <NavbarComponent />
-      <Routes>
+    <Routes>
+      {/* Layout utama dengan navbar + footer */}
+      <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/berita" element={<Berita />} />
@@ -42,9 +43,16 @@ function App() {
         <Route path='/kontak' element={<Kontak />} />
         <Route path='/statistik' element={<Statistik />} />
         <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Footer />
-    </Container>
+        {/* dan seterusnya */}
+      </Route>
+
+      {/* Layout tanpa navbar + footer */}
+      <Route element={<AuthLayout />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/Verify" element={<Verify />} />
+
+      </Route>
+    </Routes>
   );
 }
 

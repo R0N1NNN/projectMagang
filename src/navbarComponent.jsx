@@ -4,10 +4,35 @@ import { useState, useEffect } from 'react';
 import './css/main.css';
 
 function NavbarComponent() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
   const [toggle, setToggle] = useState(false);
 
   const toggleMenu = () => {
     setToggle(!toggle);
+  };
+
+  useEffect(() => {
+    const syncLoginStatus = () => {
+      const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const email = localStorage.getItem('userEmail') || '';
+      setIsLoggedIn(loggedIn);
+      setUserEmail(email);
+    };
+
+    syncLoginStatus();
+    window.addEventListener('storage', syncLoginStatus);
+    return () => window.removeEventListener('storage', syncLoginStatus);
+  }, []);
+
+  const handleLogout = () => {
+    // Hapus hanya status login, BUKAN akun-akun yang tersimpan
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("userName");
+
+    window.dispatchEvent(new Event("storage")); // supaya navbar update
+    window.location.reload();
   };
 
   return (
@@ -44,10 +69,13 @@ function NavbarComponent() {
             <NavLink to="/kontak" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Kontak Kami</NavLink>
 
           </Nav>
-          <div className='input-group abc mx-auto'>
-            <input type="text" placeholder='Search' className="search-input" />
-            <i class="fa-solid fa-magnifying-glass" style={{ color: 'black' }}></i>
-          </div>
+          {isLoggedIn ? (
+            <NavDropdown title={`Akun (${userEmail})`} id="basic-nav-dropdown">
+              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+            </NavDropdown>
+          ) : (
+            <NavLink to="/login" className="btn button-login">Login</NavLink>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
