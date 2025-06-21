@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
-
 
 import Lottie from 'lottie-react';
 
@@ -104,6 +103,17 @@ function Login() {
         setEmail('');
         setPassword('');
     };
+
+    useEffect(() => {
+        // Saat halaman login dibuka
+        document.body.style.overflow = 'hidden';
+
+        // Saat halaman login ditinggalkan (unmount)
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, []);
+
 
     return (
         <div className="login-page">

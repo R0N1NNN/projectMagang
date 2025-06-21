@@ -50,7 +50,6 @@ function App() {
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />
         <Route path="/Verify" element={<Verify />} />
-
       </Route>
     </Routes>
   );
