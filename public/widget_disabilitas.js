@@ -5582,17 +5582,22 @@ fill="#000000" stroke="none">
   }
 
   function speachmobile(text) {
+    const voicecek = localStorage.getItem("permismobile");
+
+    // Jika mode suara tidak diaktifkan, jangan jalankan
+    if (voicecek !== "on") return;
+
     if (!("speechSynthesis" in window)) {
       alert("Text-to-Speech tidak didukung di perangkat ini");
       return;
     }
 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "id-ID"; // Bahasa Indonesia
+    utterance.lang = "id-ID";
     utterance.rate = 1;
     utterance.pitch = 1;
 
-    window.speechSynthesis.cancel(); // hentikan jika sedang berbicara
+    window.speechSynthesis.cancel(); // hentikan jika sedang bicara
     window.speechSynthesis.speak(utterance);
   }
 
