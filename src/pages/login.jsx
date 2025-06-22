@@ -123,17 +123,6 @@ function Login() {
         setPassword('');
     };
 
-    useEffect(() => {
-        // Saat halaman login dibuka
-        document.body.style.overflow = 'hidden';
-
-        // Saat halaman login ditinggalkan (unmount)
-        return () => {
-            document.body.style.overflow = 'auto';
-        };
-    }, []);
-
-
     return (
         <div className="login-page">
             <div className="login-container">

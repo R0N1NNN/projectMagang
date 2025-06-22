@@ -1,8 +1,12 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "app.netlify.prismatic_gumdrop_f6ac91.twa",
-        "sha256_cert_fingerprints": ["19:90:F3:E6:74:68:4B:D9:AA:53:CA:12:57:2A:5B:2D:61:00:D8:3C:CA:53:BA:14:D3:CC:4E:7B:D9:66:74:1E"]
-      }
-    }]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.netlify.dazzling_cucurucho_c4ac26.twa",
+      "sha256_cert_fingerprints": [
+        "B1:66:2B:79:43:BA:EA:A0:41:77:33:08:D7:2B:9E:8C:81:C1:23:2C:FD:63:0B:47:C6:C7:DC:ED:93:CC:62:B3"
+      ]
+    }
+  }
+]

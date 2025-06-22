@@ -64,52 +64,86 @@
     ></script>
     <script src="/widget_disabilitas.js" defer></script>
     <script type="module">
-      import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
-      Chatbot.init({
-        chatflowid: "b9b39436-d886-4dbf-bc42-77bb4b928a97",
-        apiHost: "https://awfully-stirred-lizard.ngrok-free.app",
-        theme: {
-          button: {
-            backgroundColor: "#0048ff",
-            textColor: "#FFFFFF",
-            customIconSrc: "./icon-chatbot.png",
-            size: "large",
-            dragAndDrop: false,
+      let chatbotInstance = null;
+
+      const hiddenPaths = ["/login", "/verify", "/admin"];
+      const isHiddenPage = () => {
+        const hash = window.location.hash.toLowerCase();
+        return hiddenPaths.some((path) => hash.includes(path));
+      };
+
+      const loadChatbot = async () => {
+        const { default: Chatbot } = await import(
+          "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        );
+        chatbotInstance = Chatbot.init({
+          chatflowid: "b9b39436-d886-4dbf-bc42-77bb4b928a97",
+          apiHost: "https://awfully-stirred-lizard.ngrok-free.app",
+          theme: {
+            button: {
+              backgroundColor: "#0048ff",
+              textColor: "#FFFFFF",
+              customIconSrc: "./icon-chatbot.png",
+              size: "large",
+              dragAndDrop: false,
+            },
+            chatWindow: {
+              titleAvatarSrc: "./avatar-chatbot.png",
+              title: "Agent CSIRT",
+              height: 800,
+              width: 400,
+              backgroundColor: "#1E293B",
+              welcomeMessage:
+                "Hallo! Saya adalah CSIRT Agent. Sebelum saya membantu anda, silahkan beritahu saya Nama, Umur dan Pekerjaan anda terlebih dahulu",
+              botMessage: {
+                backgroundColor: "#D9D9D9",
+                showAvatar: true,
+                avatarSrc: "./avatar-chatbot.png",
+              },
+              userMessage: {
+                backgroundColor: "#B1BED2",
+                textColor: "black",
+              },
+              textInput: {
+                placeholder: "Masukkan Pesan Anda",
+                sendButtonColor: "black",
+              },
+              dateTimeToggle: {
+                date: true,
+                time: true,
+              },
+              footer: {
+                textColor: "white",
+                text: "CSIRT Team",
+              },
+            },
           },
-          chatWindow: {
-            titleAvatarSrc: "./avatar-chatbot.png",
-            title: "Agent CSIRT",
-            height: 800,
-            width: 400,
-            backgroundColor: "#1E293B",
-            welcomeMessage:
-              "Hallo! Saya adalah CSIRT Agent. Sebelum saya membantu anda, silahkan beritahu saya Nama, Umur dan Pekerjaan anda terlebih dahulu",
-            botMessage: {
-              backgroundColor: "#D9D9D9",
-              showAvatar: true,
-              avatarSrc: "./avatar-chatbot.png",
-            },
-            userMessage: {
-              backgroundColor: "#B1BED2",
-              textColor: "black",
-            },
-            textInput: {
-              placeholder: "Masukkan Pesan Anda",
-              sendButtonColor: "black",
-            },
-            dateTimeToggle: {
-              date: true,
-              time: true,
-            },
-            footer: {
-              textColor: "white",
-              text: "CSIRT Team",
-              company: "",
-              companyLink: "",
-            },
-          },
-        },
-      });
+        });
+      };
+
+      const removeChatbot = () => {
+        const existingFrame = document.querySelector("iframe[src*='flowise']");
+        const existingButton = document.querySelector(
+          "button[aria-label='Chatbot toggle']"
+        );
+        if (existingFrame) existingFrame.remove();
+        if (existingButton) existingButton.remove();
+        chatbotInstance = null;
+      };
+
+      const handleRouteChange = async () => {
+        if (isHiddenPage()) {
+          removeChatbot();
+        } else if (!chatbotInstance) {
+          await loadChatbot();
+        }
+      };
+
+      // Load saat pertama kali halaman dimuat
+      handleRouteChange();
+
+      // Dengarkan perubahan hash (router SPA)
+      window.addEventListener("hashchange", handleRouteChange);
     </script>
   </body>
 </html>

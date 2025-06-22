@@ -1,6 +1,8 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
+import WidgetManager from './utils/WidgetManager.jsx';
+
 import MainLayout from './pages/MainLayout.jsx';
 import AuthLayout from './pages/AuthLayout.jsx';
 
@@ -26,36 +28,39 @@ import NotFound from './components/NotFound.jsx';
 
 function App() {
   return (
-    <Routes>
-      {/* Layout utama dengan navbar + footer */}
-      <Route element={<MainLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/berita" element={<Berita />} />
-        <Route path="/berita/:id" element={<BeritaDetail />} />
-        <Route path="/berita/halaman/:halaman" element={<Berita />} />
-        <Route path="/event" element={<Event />} />
-        <Route path="/panduan" element={<Panduan />} />
-        <Route path="/kegiatan" element={<Kegiatan />} />
-        <Route path='/kegiatan/:halaman' element={<Kegiatan />} />
-        <Route path='/karir' element={<Karir />} />
-        <Route path='/karirDetail/halamanKarir/:title' element={<KarirDetail />} />
-        <Route path='/rfc' element={<RFC />} />
-        <Route path='/laporan' element={<Laporan />} />
-        <Route path='/ticket' element={<Ticket />} />
-        <Route path='/kontak' element={<Kontak />} />
-        <Route path='/statistik' element={<Statistik />} />
-        <Route path="*" element={<NotFound />} />
-        {/* dan seterusnya */}
-      </Route>
+    <>
+      <WidgetManager />
+      <Routes>
+        {/* Layout utama dengan navbar + footer */}
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/berita" element={<Berita />} />
+          <Route path="/berita/:id" element={<BeritaDetail />} />
+          <Route path="/berita/halaman/:halaman" element={<Berita />} />
+          <Route path="/event" element={<Event />} />
+          <Route path="/panduan" element={<Panduan />} />
+          <Route path="/kegiatan" element={<Kegiatan />} />
+          <Route path='/kegiatan/:halaman' element={<Kegiatan />} />
+          <Route path='/karir' element={<Karir />} />
+          <Route path='/karirDetail/halamanKarir/:title' element={<KarirDetail />} />
+          <Route path='/rfc' element={<RFC />} />
+          <Route path='/laporan' element={<Laporan />} />
+          <Route path='/ticket' element={<Ticket />} />
+          <Route path='/kontak' element={<Kontak />} />
+          <Route path='/statistik' element={<Statistik />} />
+          <Route path="*" element={<NotFound />} />
+          {/* dan seterusnya */}
+        </Route>
 
-      {/* Layout tanpa navbar + footer */}
-      <Route element={<AuthLayout />}>
-        <Route path="/login" element={<Login />} />
-        <Route path="/Verify" element={<Verify />} />
-        <Route path="/admin" element={<Admin />} />
-      </Route>
-    </Routes>
+        {/* Layout tanpa navbar + footer */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/Verify" element={<Verify />} />
+          <Route path="/admin" element={<Admin />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
