@@ -5581,46 +5581,19 @@ fill="#000000" stroke="none">
     }
   }
 
-  async function speachmobile(value) {
-    var voicecek = localStorage.getItem("permismobile");
-    if (voicecek != null && voicecek == "on") {
-      if (
-        api_key_google_cloud == undefined ||
-        api_key_google_cloud == "" ||
-        api_key_google_cloud == null
-      ) {
-        if (responsiveVoice.voiceSupport()) {
-          responsiveVoice.speak(value, "Indonesian Female");
-        }
-      } else if (api_key_google_cloud != undefined) {
-        const spanishResponse = await fetch(
-          `https://texttospeech.googleapis.com/v1/text:synthesize?key=${API_KEY}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              input: {
-                text: valueText,
-              },
-              voice: {
-                languageCode: "id-ID",
-                name: "id-ID-Wavenet-D",
-                ssmlGender: "FEMALE",
-              },
-              audioConfig: {
-                audioEncoding: "MP3",
-              },
-            }),
-          }
-        );
-
-        const spanishAudioData = await spanishResponse.json();
-        var myaudionew = `data:audio/mp3;base64,${spanishAudioData.audioContent}`;
-        await playAudio(myaudionew);
-      }
+  function speachmobile(text) {
+    if (!("speechSynthesis" in window)) {
+      alert("Text-to-Speech tidak didukung di perangkat ini");
+      return;
     }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "id-ID"; // Bahasa Indonesia
+    utterance.rate = 1;
+    utterance.pitch = 1;
+
+    window.speechSynthesis.cancel(); // hentikan jika sedang berbicara
+    window.speechSynthesis.speak(utterance);
   }
 
   async function pauseAudio() {
