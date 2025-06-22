@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import Lottie from 'lottie-react';
 
@@ -31,6 +32,8 @@ function Login() {
     const [isForgotPassword, setIsForgotPassword] = useState(false);
     const [isResetting, setIsResetting] = useState(false);
 
+    const [recaptchaToken, setRecaptchaToken] = useState('');
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -54,7 +57,13 @@ function Login() {
             return;
         }
 
-        saveUserData(email, name, password, occupation, birthDate);
+        if (!recaptchaToken) {
+            alert("Silakan selesaikan reCAPTCHA terlebih dahulu.");
+            return;
+        }
+
+        // Lanjut proses simpan akun & emailjs
+        saveUserData(email, name, password);
 
         const cleanEmail = email.trim().toLowerCase();
         const templateParams = {
@@ -74,6 +83,7 @@ function Login() {
             alert("Gagal mengirim email verifikasi.");
         });
     };
+
 
     // Ganti password
     const handlePasswordReset = (e) => {
@@ -197,6 +207,12 @@ function Login() {
                                 value={birthDate}
                                 onChange={(e) => setBirthDate(e.target.value)}
                                 className="form-control text-black"
+                            />
+
+                            <ReCAPTCHA
+                                sitekey="6Lf7fWkrAAAAAPAdnqBW_dGWX7woXj0s8Dc2tIEc" // Ganti dengan SITE KEY kamu
+                                onChange={(token) => setRecaptchaToken(token)}
+                                className="mb-3"
                             />
 
                             <button type="submit">Daftar</button>
