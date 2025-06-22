@@ -3733,10 +3733,14 @@ fill="#000000" stroke="none">
     function action_moda_suara_on() {
       if (getOS() == "iOS" || getOS() == "Android") {
         localStorage.setItem("permismobile", "on");
-        speachmobile("Selamat Datang Di Website " + base_url_website);
+        speachmobile(
+          "Selamat Datang Di Website csirt, saya akan membantu anda mendikte seluruh isi website ini"
+        );
       } else {
         localStorage.setItem("permisvoice", "on");
-        speach("Selamat Datang Di Website " + base_url_website);
+        speach(
+          "Selamat Datang Di Website csirt, saya akan membantu anda mendikte seluruh isi website ini"
+        );
       }
 
       $("#action_moda_suara").addClass("active_box_menu_disabilitas");
