@@ -6,9 +6,9 @@ import ReCAPTCHA from "react-google-recaptcha";
 import Lottie from 'lottie-react';
 
 import '../css/login.css';
-import loginAnimasi from '../../public/animasiLogin.json';
-import regAnimasi from '../../public/animasiRegister.json';
-import lupaAnimasi from '../../public/animasiLupa.json';
+import loginAnimasi from '../assets/animasiLogin.json';
+import regAnimasi from '../assets/animasiRegister.json';
+import lupaAnimasi from '../assets/animasiLupa.json';
 import emailjs from '@emailjs/browser';
 
 // Simpan akun ke localStorage

@@ -1,3 +1,5 @@
+@import "leaflet/dist/leaflet.css";
+
 * {
   color: #fff;
   font-family: "Poppins", sans-serif;
@@ -162,6 +164,11 @@ button:hover {
   margin-right: 20px;
   object-fit: cover;
   border-radius: 10px; /* untuk sudut melengkung */
+}
+.dropdown-grid-wrapper i {
+  width: 40px;
+  height: auto;
+  margin-right: 15px;
 }
 
 .dropdown-grid-wrapper .dropdown-item:hover img {
@@ -1467,6 +1474,17 @@ button:hover {
   z-index: 10000;
   font-weight: bold;
 }
+
+/* Cyber Tools */
+.online-tools input.bg-dark::placeholder,
+.online-tools textarea.bg-dark::placeholder {
+  color: #ffffff !important;
+}
+
+.card-spacing {
+  margin-bottom: 60px;
+}
+/* End Cyber Tools */
 
 /* Responsive */
 

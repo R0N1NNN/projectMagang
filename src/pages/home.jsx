@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import NavigateButton from "../components/NavigateButton";
+import CyberMap from './Cybermap.jsx';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -130,6 +131,11 @@ function Home() {
           </Row>
         </Container>
       </div>
+
+      {/* Cyber Map */}
+      <CyberMap />
+      {/* End Cyber Map */}
+
       <div className='mt-5'>
         <Container>
           <div className="halaman-rekrut">

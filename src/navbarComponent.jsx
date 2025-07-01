@@ -7,6 +7,8 @@ function NavbarComponent() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [toggle, setToggle] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
 
   const toggleMenu = () => {
     setToggle(!toggle);
@@ -22,7 +24,19 @@ function NavbarComponent() {
 
     syncLoginStatus();
     window.addEventListener('storage', syncLoginStatus);
-    return () => window.removeEventListener('storage', syncLoginStatus);
+
+    const syncCartCount = () => {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      setCartCount(cart.length);
+    };
+
+    syncCartCount();
+    window.addEventListener("storage", syncCartCount);
+
+    return () => {
+      window.removeEventListener('storage', syncLoginStatus);
+      window.removeEventListener('storage', syncCartCount);
+    };
   }, []);
 
   const handleLogout = () => {
@@ -61,6 +75,7 @@ function NavbarComponent() {
                 <NavLink to="/kegiatan" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-kegiatan.png`} />Kegiatan</NavLink>
                 <NavLink to="/karir" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-karir.png`} />Karir</NavLink>
                 <NavLink to="/statistik" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-statistik.png`} />Statistik</NavLink>
+                <NavLink to="/OnlineCyberTools" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}tools.svg`} />Cyber Tools</NavLink>
               </div>
             </NavDropdown>
 
@@ -69,13 +84,16 @@ function NavbarComponent() {
             <NavLink to="/kontak" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Kontak Kami</NavLink>
 
           </Nav>
-          {isLoggedIn ? (
-            <NavDropdown title={`Akun (${userEmail})`} id="basic-nav-dropdown">
-              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
-            </NavDropdown>
-          ) : (
-            <NavLink to="/login" className="btn button-login">Login</NavLink>
-          )}
+          <div className="d-flex align-items-center gap-3">
+            {/* Tombol Login atau Dropdown Akun */}
+            {isLoggedIn ? (
+              <NavDropdown title={`Akun (${userEmail})`} id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <NavLink to="/login" className="btn button-login">Login</NavLink>
+            )}
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>

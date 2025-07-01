@@ -1,7 +1,6 @@
-import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { cardStatistik } from '../datapages/index.jsx';
+import CyberMap from './Cybermap.jsx';
 
 export default function Statistik() {
   return (
@@ -60,6 +59,8 @@ export default function Statistik() {
             </div>
           </div>
           {/* End Statistik Data Section */}
+
+          <CyberMap />
 
           <div className="detailed-stats" style={{ padding: '50px 20px 100px 20px' }}>
             <h2 className="fw-bold" style={{ marginTop: '50px' }}>Detail Statistik Pencegahan</h2>

@@ -24,6 +24,9 @@ import Statistik from './pages/statistik.jsx';
 import Login from './pages/login.jsx';
 import Verify from './pages/Verify.jsx';
 import Admin from './pages/admin.jsx'
+import CyberMap from './pages/Cybermap.jsx';
+import OnlineCyberTools from './pages/OnlineCyberTools';
+
 import NotFound from './components/NotFound.jsx';
 
 function App() {
@@ -49,6 +52,9 @@ function App() {
           <Route path='/ticket' element={<Ticket />} />
           <Route path='/kontak' element={<Kontak />} />
           <Route path='/statistik' element={<Statistik />} />
+          <Route path="/Cybermap" element={<CyberMap />} />
+          <Route path="/OnlineCyberTools" element={<OnlineCyberTools />} />
+          {/* Halaman 404 Not Found */}
           <Route path="*" element={<NotFound />} />
           {/* dan seterusnya */}
         </Route>
