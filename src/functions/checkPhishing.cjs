@@ -1,30 +1,35 @@
 require("dotenv").config();
-const fetch = require("node-fetch");
 
 exports.handler = async (event) => {
-  console.log("📥 Event body:", event.body);
-
   let url;
   try {
     const body = JSON.parse(event.body || "{}");
     url = body.url;
     console.log("🔍 Checking URL:", url);
-  } catch (err) {
-    console.error("❌ Gagal parse body:", err);
-    return { statusCode: 400, body: JSON.stringify({ error: "Bad Request" }) };
+  } catch (e) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: "Permintaan tidak valid" }),
+    };
+  }
+
+  if (!url) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: "URL tidak ditemukan" }),
+    };
   }
 
   const API_KEY = process.env.GOOGLE_SAFE_BROWSING_KEY;
   if (!API_KEY) {
-    console.error("❌ API key not found in env");
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "API Key missing" }),
+      body: JSON.stringify({ error: "API key tidak ditemukan" }),
     };
   }
 
   try {
-    const response = await fetch(
+    const res = await fetch(
       `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${API_KEY}`,
       {
         method: "POST",
@@ -49,29 +54,15 @@ exports.handler = async (event) => {
       }
     );
 
-    console.log("📨 Status code:", response.status);
-    const text = await response.text();
-    console.log("📄 Raw response:", text);
-
-    let result;
-    try {
-      result = JSON.parse(text);
-    } catch (e) {
-      console.error("❌ Gagal parse JSON:", e);
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: "Gagal parse response" }),
-      };
-    }
-
-    console.log("📦 Final result:", result);
+    const result = await res.json();
+    console.log("📦 Result:", result);
 
     return {
       statusCode: 200,
       body: JSON.stringify({ phishing: !!result.matches, raw: result }),
     };
   } catch (err) {
-    console.error("🔥 ERROR during fetch:", err);
+    console.error("❌ Internal error:", err);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Internal error" }),
