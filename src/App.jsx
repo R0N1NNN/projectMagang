@@ -19,6 +19,7 @@ import KarirDetail from './pagesNumber/karirDetail.jsx';
 import RFC from './pages/rfc.jsx';
 import Laporan from './pages/laporan.jsx';
 import Ticket from './pages/ticket.jsx'
+import DetailTicket from './pages/detailTicket.jsx';
 import Kontak from './pages/kontak.jsx';
 import Statistik from './pages/statistik.jsx';
 import Login from './pages/login.jsx';
@@ -50,6 +51,7 @@ function App() {
           <Route path='/rfc' element={<RFC />} />
           <Route path='/laporan' element={<Laporan />} />
           <Route path='/ticket' element={<Ticket />} />
+          <Route path='/detailTicket' element={<DetailTicket />} />
           <Route path='/kontak' element={<Kontak />} />
           <Route path='/statistik' element={<Statistik />} />
           <Route path="/Cybermap" element={<CyberMap />} />

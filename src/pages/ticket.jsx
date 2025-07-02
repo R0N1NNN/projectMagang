@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Table, Badge, Button, Form, Row, Col } from "react-bootstrap";
 import "../css/main.css";
 
@@ -6,20 +7,57 @@ export default function Ticket() {
     const [tickets, setTickets] = useState([]);
     const [filteredTickets, setFilteredTickets] = useState([]);
     const [filterDate, setFilterDate] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get("token");
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
         const stored = localStorage.getItem("tickets");
-        if (stored) {
-            const parsed = JSON.parse(stored);
+        const parsed = stored ? JSON.parse(stored) : [];
+
+        if (isLoggedIn) {
             setTickets(parsed);
             setFilteredTickets(parsed);
+            return;
         }
+
+        if (token) {
+            const match = parsed.find(t => t.ticketNumber === token);
+            if (match) {
+                setTickets([match]);
+                setFilteredTickets([match]);
+                return;
+            } else {
+                alert("Token tidak ditemukan atau tiket tidak valid.");
+                // ❌ Jangan navigate, cukup alert dan kosongkan
+                setTickets([]);
+                setFilteredTickets([]);
+                return;
+            }
+        }
+
+        // ❌ Tidak login dan tidak ada token
+        alert("Anda harus login atau mengakses melalui link dengan token.");
+        // ❌ Jangan navigate agar tidak reload terus-menerus
+        setTickets([]);
+        setFilteredTickets([]);
     }, []);
 
-    const handleDelete = (ticketNumber) => {
-        if (!window.confirm("Yakin ingin menghapus ticket ini?")) return;
+    const handleCancel = (ticketNumber) => {
+        const target = tickets.find(t => t.ticketNumber === ticketNumber);
+        if (!target || target.status === "Dibatalkan") return;
 
-        const updated = tickets.filter(t => t.ticketNumber !== ticketNumber);
+        if (!window.confirm("Yakin ingin membatalkan laporan ini?")) return;
+
+        const updated = tickets.map(t => {
+            if (t.ticketNumber === ticketNumber) {
+                return { ...t, status: "Dibatalkan" };
+            }
+            return t;
+        });
+
         setTickets(updated);
         setFilteredTickets(updated);
         localStorage.setItem("tickets", JSON.stringify(updated));
@@ -35,7 +73,7 @@ export default function Ticket() {
         }
 
         const filtered = tickets.filter(ticket => {
-            const createdDate = new Date(ticket.createdAt).toISOString().slice(0, 10); // format yyyy-mm-dd
+            const createdDate = new Date(ticket.createdAt).toISOString().slice(0, 10);
             return createdDate === selectedDate;
         });
 
@@ -96,21 +134,38 @@ export default function Ticket() {
                                 {filteredTickets.map((t, i) => (
                                     <tr key={i}>
                                         <td>{i + 1}</td>
-                                        <td><code>{t.ticketNumber}</code></td>
+                                        <td>
+                                            <a
+                                                href={`/#/detailTicket?token=${t.ticketNumber}`}
+                                                style={{ color: "#0dcaf0", textDecoration: "underline" }}
+                                            >
+                                                <code>{t.ticketNumber}</code>
+                                            </a>
+                                        </td>
                                         <td>{t.domain}</td>
                                         <td>{new Date(t.createdAt).toLocaleDateString()}</td>
-                                        <td><Badge bg="info">{t.status}</Badge></td>
+                                        <td>
+                                            <Badge bg={t.status === "Dibatalkan" ? "danger" : "info"}>
+                                                {t.status}
+                                            </Badge>
+                                        </td>
                                         <td style={{ maxWidth: 200, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                                             {t.description || "-"}
                                         </td>
                                         <td>
-                                            <Button
-                                                variant="danger"
-                                                size="sm"
-                                                onClick={() => handleDelete(t.ticketNumber)}
-                                            >
-                                                Hapus
-                                            </Button>
+                                            {t.status === "Dibatalkan" ? (
+                                                <Button variant="secondary" size="sm" disabled>
+                                                    Laporan Dibatalkan
+                                                </Button>
+                                            ) : (
+                                                <Button
+                                                    variant="warning"
+                                                    size="sm"
+                                                    onClick={() => handleCancel(t.ticketNumber)}
+                                                >
+                                                    Batalkan Laporan
+                                                </Button>
+                                            )}
                                         </td>
                                     </tr>
                                 ))}

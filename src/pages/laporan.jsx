@@ -23,10 +23,6 @@ export default function Laporan() {
     e.preventDefault();
 
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-    if (!isLoggedIn) {
-      alert("Harus login terlebih dahulu.");
-      return;
-    }
 
     if (!captchaToken) {
       alert("Silakan selesaikan CAPTCHA terlebih dahulu.");
@@ -64,6 +60,13 @@ export default function Laporan() {
     input.name = "ticketNumber";
     input.value = newTicket;
     form.current.appendChild(input);
+
+    const link = `${window.location.origin}/#/ticket?token=${newTicket}`;
+    const linkInput = document.createElement("input");
+    linkInput.type = "hidden";
+    linkInput.name = "ticketLink";
+    linkInput.value = link;
+    form.current.appendChild(linkInput);
 
     const ticketData = {
       ticketNumber: newTicket,
@@ -122,12 +125,13 @@ export default function Laporan() {
       <div className="mt-5 mb-3">
         <Container className="rounded-5" style={{ padding: "75px", marginTop: '150px', border: '1px solid var(--laporan-color)' }}>
           <Col md={12}>
-            <div className="text-end mb-4">
-              <Button variant="primary" onClick={() => window.location.href = "/#/ticket"}>
-                Lihat Ticket Laporan Anda
-              </Button>
-            </div>
-
+            {localStorage.getItem("isLoggedIn") === "true" && (
+              <div className="text-end mb-4">
+                <Button variant="primary" onClick={() => window.location.href = "/#/ticket"}>
+                  Lihat Ticket Laporan Anda
+                </Button>
+              </div>
+            )}
             <Form ref={form} onSubmit={sendEmail}>
               <h3 className="mb-4">Data Diri</h3>
               <Row className="mb-5 g-5">
@@ -199,6 +203,14 @@ export default function Laporan() {
                     <Form.Control as="textarea" rows={8} name="incidentDescription" className="input-secondary-bg" />
                   </Form.Group>
                 </Col>
+                <Form.Group>
+                  <Form.Check
+                    controlId="Pernyataan"
+                    type="checkbox"
+                    label="Saya menyatakan bahwa informasi yang saya berikan adalah benar dan dapat dipertanggung jawabkan."
+                    name="Pernyataan"
+                  />
+                </Form.Group>
                 <Col md={4}>
                   <Form.Group controlId="captchaBox">
                     <Form.Label>Verifikasi Keamanan</Form.Label>
@@ -208,22 +220,20 @@ export default function Laporan() {
                     />
                   </Form.Group>
                 </Col>
-                <Form.Group>
-                  <Form.Check
-                    controlId="Pernyataan"
-                    type="checkbox"
-                    label="Saya menyatakan bahwa informasi yang saya berikan adalah benar dan dapat dipertanggung jawabkan."
-                    name="Pernyataan"
-                  />
-                </Form.Group>
-                <Button
-                  type="submit"
-                  className="mx-auto button-laporkan"
-                  style={{ width: "180px", height: "50px" }}
-                  value="Send"
-                >
-                  Submit
-                </Button>
+
+                <Row className="mt-5">
+                  <Col className="d-flex justify-content-center">
+                    <Button
+                      type="submit"
+                      className="button-laporkan"
+                      style={{ width: "180px", height: "50px" }}
+                      value="Send"
+                    >
+                      Submit
+                    </Button>
+                  </Col>
+                </Row>
+
               </Row>
             </Form>
           </Col>
