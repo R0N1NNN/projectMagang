@@ -1486,6 +1486,47 @@ button:hover {
 }
 /* End Cyber Tools */
 
+/* Ticket */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-bubble {
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 75%;
+  word-wrap: break-word;
+  position: relative;
+}
+
+.user-bubble {
+  align-self: flex-end;
+  background-color: #0d6efd;
+  color: white;
+  border-top-right-radius: 0;
+}
+
+.admin-bubble {
+  align-self: flex-start;
+  background-color: #343a40;
+  color: white;
+  border-top-left-radius: 0;
+}
+
+.chat-sender {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  opacity: 0.8;
+}
+
+.chat-text {
+  margin: 0;
+}
+
+/* End Ticket */
+
 /* Responsive */
 
 @media (max-width: 390px) {

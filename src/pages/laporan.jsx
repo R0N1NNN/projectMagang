@@ -9,6 +9,8 @@ export default function Laporan() {
   const [ticketNumber, setTicketNumber] = useState('');
   const [showNotification, setShowNotification] = useState(false);
   const [captchaToken, setCaptchaToken] = useState('');
+  const userName = localStorage.getItem("userName");
+  const userEmail = localStorage.getItem("userEmail");
 
   const randomizeTicket = () => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -23,6 +25,7 @@ export default function Laporan() {
     e.preventDefault();
 
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
 
     if (!captchaToken) {
       alert("Silakan selesaikan CAPTCHA terlebih dahulu.");
@@ -61,7 +64,7 @@ export default function Laporan() {
     input.value = newTicket;
     form.current.appendChild(input);
 
-    const link = `${window.location.origin}/#/ticket?token=${newTicket}`;
+    const link = `${window.location.origin}/#/detailticket?token=${newTicket}`;
     const linkInput = document.createElement("input");
     linkInput.type = "hidden";
     linkInput.name = "ticketLink";
@@ -77,7 +80,10 @@ export default function Laporan() {
       impact: formData.get("incidentImpact"),
       description: formData.get("incidentDescription"),
       status: "Diproses",
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
+      createdBy: isLoggedIn && userName ? `@${userName}` : getOrCreateGuestId(),
+      email: isLoggedIn && userEmail ? userEmail : "-",
+      messages: []
     };
 
     const existing = JSON.parse(localStorage.getItem("tickets") || "[]");
@@ -95,6 +101,15 @@ export default function Laporan() {
       console.error("Gagal kirim:", err);
       alert("Gagal mengirim laporan.");
     });
+  };
+
+  const getOrCreateGuestId = () => {
+    let guestId = localStorage.getItem("guestId");
+    if (!guestId) {
+      guestId = `Guest${Math.floor(100000 + Math.random() * 900000)}`; // contoh: Guest834321
+      localStorage.setItem("guestId", guestId);
+    }
+    return guestId;
   };
 
   return (
@@ -188,13 +203,36 @@ export default function Laporan() {
                 <Col md={4}>
                   <Form.Group controlId="incidentType">
                     <Form.Label>Jenis Insiden<span className="text-danger">*</span></Form.Label>
-                    <Form.Control type="text" name="incidentType" className="input-secondary-bg" />
+                    <Form.Select name="incidentType" className="input-secondary-bg bg-dark text-white">
+                      <option value="">-- Pilih Jenis Insiden --</option>
+                      <option value="Malware" title="Malware adalah perangkat lunak berbahaya yang dirancang untuk merusak atau mengeksploitasi sistem.">Malware</option>
+                      <option value="Defacement" title="Defacement adalah perubahan tampilan halaman web tanpa izin.">Defacement</option>
+                      <option value="Phishing" title="Phishing adalah upaya penipuan untuk memperoleh data sensitif dengan menyamar sebagai entitas tepercaya.">Phishing</option>
+                      <option value="DDoS" title="DDoS adalah serangan terhadap server dengan mengirimkan lalu lintas yang sangat tinggi agar layanan tidak tersedia.">DDoS</option>
+                      <option value="Ransomware" title="Ransomware adalah malware yang mengenkripsi data dan meminta tebusan.">Ransomware</option>
+                      <option value="Unauthorized Access" title="Akses tidak sah berarti seseorang masuk ke sistem tanpa otorisasi.">Akses Tidak Sah</option>
+                      <option value="Data Breach" title="Kebocoran data terjadi saat informasi sensitif jatuh ke tangan yang salah.">Kebocoran Data</option>
+                      <option value="Exploit" title="Pemanfaatan kerentanan adalah penggunaan celah keamanan untuk menyerang sistem.">Pemanfaatan Kerentanan</option>
+                      <option value="Botnet Activity" title="Aktivitas botnet melibatkan jaringan perangkat yang dikontrol oleh pihak ketiga untuk tujuan berbahaya.">Aktivitas Botnet</option>
+                      <option value="Insider Threat" title="Ancaman dari dalam adalah risiko yang berasal dari orang dalam organisasi.">Ancaman dari Dalam</option>
+                    </Form.Select>
                   </Form.Group>
                 </Col>
                 <Col md={4}>
                   <Form.Group controlId="incidentImpact">
                     <Form.Label>Dampak Insiden<span className="text-danger">*</span></Form.Label>
-                    <Form.Control type="text" name="incidentImpact" className="input-secondary-bg" />
+                    <Form.Select name="incidentImpact" className="input-secondary-bg bg-dark text-white">
+                      <option value="">-- Pilih Dampak --</option>
+                      <option value="Downtime" title="Layanan tidak aktif atau tidak dapat diakses.">Downtime / Layanan Tidak Aktif</option>
+                      <option value="Kebocoran Data" title="Informasi sensitif atau rahasia tersebar ke publik atau pihak tak berwenang.">Kebocoran Data</option>
+                      <option value="Kerusakan Sistem" title="Kerusakan atau malfungsi pada sistem atau perangkat.">Kerusakan Sistem</option>
+                      <option value="Reputasi Terganggu" title="Citra atau kepercayaan publik terhadap organisasi menurun.">Reputasi Terganggu</option>
+                      <option value="Kehilangan Akses" title="Akses terhadap sistem atau data menjadi tidak tersedia.">Kehilangan Akses</option>
+                      <option value="Kerugian Finansial" title="Organisasi mengalami kerugian dalam bentuk uang akibat insiden.">Kerugian Finansial</option>
+                      <option value="Pelanggaran Regulasi" title="Melanggar hukum atau peraturan yang berlaku seperti UU Perlindungan Data.">Pelanggaran Regulasi / Kepatuhan</option>
+                      <option value="Ancaman Keamanan Lainnya" title="Ancaman lain yang berpotensi merusak sistem atau data.">Ancaman Keamanan Lainnya</option>
+                    </Form.Select>
+
                   </Form.Group>
                 </Col>
                 <Col md={8}>

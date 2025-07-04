@@ -10,9 +10,10 @@ export default function Ticket() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get("token");
+        const hashParams = new URLSearchParams(window.location.hash.split("?")[1]);
+        const token = hashParams.get("token");
         const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
 
         const stored = localStorage.getItem("tickets");
         const parsed = stored ? JSON.parse(stored) : [];
@@ -31,19 +32,17 @@ export default function Ticket() {
                 return;
             } else {
                 alert("Token tidak ditemukan atau tiket tidak valid.");
-                // ❌ Jangan navigate, cukup alert dan kosongkan
                 setTickets([]);
                 setFilteredTickets([]);
                 return;
             }
         }
 
-        // ❌ Tidak login dan tidak ada token
         alert("Anda harus login atau mengakses melalui link dengan token.");
-        // ❌ Jangan navigate agar tidak reload terus-menerus
         setTickets([]);
         setFilteredTickets([]);
     }, []);
+
 
     const handleCancel = (ticketNumber) => {
         const target = tickets.find(t => t.ticketNumber === ticketNumber);
@@ -137,7 +136,7 @@ export default function Ticket() {
                                         <td>
                                             <a
                                                 href={`/#/detailTicket?token=${t.ticketNumber}`}
-                                                style={{ color: "#0dcaf0", textDecoration: "underline" }}
+                                                style={{ color: "#0dcaf0" }}
                                             >
                                                 <code>{t.ticketNumber}</code>
                                             </a>
@@ -145,7 +144,15 @@ export default function Ticket() {
                                         <td>{t.domain}</td>
                                         <td>{new Date(t.createdAt).toLocaleDateString()}</td>
                                         <td>
-                                            <Badge bg={t.status === "Dibatalkan" ? "danger" : "info"}>
+                                            <Badge
+                                                bg={
+                                                    t.status === "Dibatalkan"
+                                                        ? "danger"
+                                                        : t.status === "Selesai"
+                                                            ? "success"
+                                                            : "primary"
+                                                }
+                                            >
                                                 {t.status}
                                             </Badge>
                                         </td>
@@ -157,9 +164,13 @@ export default function Ticket() {
                                                 <Button variant="secondary" size="sm" disabled>
                                                     Laporan Dibatalkan
                                                 </Button>
+                                            ) : t.status === "Selesai" ? (
+                                                <Button variant="secondary" size="sm" disabled>
+                                                    Laporan Selesai
+                                                </Button>
                                             ) : (
                                                 <Button
-                                                    variant="warning"
+                                                    variant="danger"
                                                     size="sm"
                                                     onClick={() => handleCancel(t.ticketNumber)}
                                                 >

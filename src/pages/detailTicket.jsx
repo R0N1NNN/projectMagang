@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Container, Card, Badge } from "react-bootstrap";
+import { Container, Card, Badge, Row, Col, Form, Button } from "react-bootstrap";
 
 export default function DetailTicket() {
     const [ticket, setTicket] = useState(null);
-    const [isChecked, setIsChecked] = useState(false); // ✅ mencegah alert dobel
+    const [isChecked, setIsChecked] = useState(false);
+    const [replyMessage, setReplyMessage] = useState("");
 
     useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get("token");
+        const hashParams = new URLSearchParams(window.location.hash.split("?")[1]);
+        const token = hashParams.get("token");
 
         const stored = localStorage.getItem("tickets");
         const tickets = stored ? JSON.parse(stored) : [];
@@ -29,14 +30,51 @@ export default function DetailTicket() {
         setIsChecked(true);
     }, []);
 
-    if (!isChecked) return null; // ⏳ Tunggu pengecekan token dulu
+    const handleUserReply = () => {
+        if (!replyMessage.trim()) return;
 
-    if (!ticket) return null;
+        const updatedTickets = JSON.parse(localStorage.getItem("tickets")) || [];
+        const index = updatedTickets.findIndex(t => t.ticketNumber === ticket.ticketNumber);
+
+        if (index !== -1) {
+            const now = Date.now();
+            if (!updatedTickets[index].messages) updatedTickets[index].messages = [];
+
+            updatedTickets[index].messages.push({
+                sender: "Anda",
+                content: replyMessage,
+                timestamp: now
+            });
+
+            localStorage.setItem("tickets", JSON.stringify(updatedTickets));
+            setTicket(updatedTickets[index]);
+            setReplyMessage("");
+        }
+    };
+
+    if (!isChecked || !ticket) return null;
+    const isClosed = ticket?.status === "Selesai";
 
     return (
-        <Container className="pt-5 pb-5">
-            <Card className="p-4 shadow-lg">
-                <h3>Detail Tiket Laporan</h3>
+        <div>
+            <header className="homepage">
+                <Container>
+                    <Row className="header-box pt-lg-5">
+                        <Col className="ps-0">
+                            <h1 className="profile">Detail Tiket Laporan</h1>
+                        </Col>
+                        <Col className="position-relative">
+                            <img
+                                src={`${import.meta.env.BASE_URL}icon-laporan.png`}
+                                alt="hero-img"
+                                className="hero-img"
+                            />
+                        </Col>
+                    </Row>
+                </Container>
+            </header>
+            <Card className="p-4" style={{ backgroundColor: "#213450", color: "#ffffff" }}>
+                <h3>Detail Tiket</h3>
                 <hr />
                 <p><strong>Nomor Tiket:</strong> <code>{ticket.ticketNumber}</code></p>
                 <p>
@@ -54,6 +92,38 @@ export default function DetailTicket() {
                 <p>{ticket.description || "(Tidak ada deskripsi)"}</p>
                 <p><strong>Waktu Laporan:</strong> {new Date(ticket.createdAt).toLocaleString()}</p>
             </Card>
-        </Container>
+            <div className="chat-container mt-3">
+                {ticket.messages.map((msg, idx) => {
+                    const isUser = msg.sender === "Anda";
+                    return (
+                        <div
+                            key={idx}
+                            className={`chat-bubble ${isUser ? "user-bubble" : "admin-bubble"}`}
+                        >
+                            <p className="chat-sender">
+                                <strong>{msg.sender}</strong> <small>{new Date(msg.timestamp).toLocaleString()}</small>
+                            </p>
+                            <p className="chat-text">{msg.content}</p>
+                        </div>
+                    );
+                })}
+            </div>
+            {ticket.status !== "Dibatalkan" && (
+                <div className="mt-4">
+                    <h5>Kirim Balasan</h5>
+                    <Form.Control
+                        as="textarea"
+                        disabled={isClosed}
+                        rows={3}
+                        placeholder="Tulis balasan Anda..."
+                        value={replyMessage}
+                        onChange={(e) => setReplyMessage(e.target.value)}
+                        className="mb-2"
+                    />
+                    <Button variant="primary" onClick={handleUserReply} disabled={isClosed}>Kirim</Button>
+                    {isClosed && <div className="text-info mt-2">Tiket telah ditutup oleh admin.</div>}
+                </div>
+            )}
+        </div>
     );
 }
