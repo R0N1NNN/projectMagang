@@ -6,6 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Laporan() {
   const form = useRef();
+  const [attachment, setAttachment] = useState(null);
   const [ticketNumber, setTicketNumber] = useState('');
   const [showNotification, setShowNotification] = useState(false);
   const [captchaToken, setCaptchaToken] = useState('');
@@ -20,6 +21,7 @@ export default function Laporan() {
     }
     return ticket;
   };
+
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -83,12 +85,19 @@ export default function Laporan() {
       createdAt: new Date().toISOString(),
       createdBy: isLoggedIn && userName ? `@${userName}` : getOrCreateGuestId(),
       email: isLoggedIn && userEmail ? userEmail : "-",
-      messages: []
+      messages: [],
+      attachment: attachment || null,
     };
 
     const existing = JSON.parse(localStorage.getItem("tickets") || "[]");
     existing.push(ticketData);
     localStorage.setItem("tickets", JSON.stringify(existing));
+
+    const fileLinkInput = document.createElement("input");
+    fileLinkInput.type = "hidden";
+    fileLinkInput.name = "fileLink";
+    fileLinkInput.value = `Lihat Lampiran: ${link} (jika ada)`;
+    form.current.appendChild(fileLinkInput);
 
     emailjs.sendForm("service_35zz5vq", "template_2jn9c27", form.current, {
       publicKey: "Xw0Iu8t5mHaLHk3g2",
@@ -110,6 +119,17 @@ export default function Laporan() {
       localStorage.setItem("guestId", guestId);
     }
     return guestId;
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAttachment(reader.result); // base64
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -232,9 +252,15 @@ export default function Laporan() {
                       <option value="Pelanggaran Regulasi" title="Melanggar hukum atau peraturan yang berlaku seperti UU Perlindungan Data.">Pelanggaran Regulasi / Kepatuhan</option>
                       <option value="Ancaman Keamanan Lainnya" title="Ancaman lain yang berpotensi merusak sistem atau data.">Ancaman Keamanan Lainnya</option>
                     </Form.Select>
-
                   </Form.Group>
                 </Col>
+                <Col md={4}>
+                  <Form.Group controlId="incidentAttachment">
+                    <Form.Label>Lampiran Bukti</Form.Label>
+                    <Form.Control type="file" accept="image/*,application/pdf" className="input-secondary-bg bg-dark" onChange={handleFileChange} />
+                  </Form.Group>
+                </Col>
+
                 <Col md={8}>
                   <Form.Group controlId="incidentDescription">
                     <Form.Label>Deskripsi</Form.Label>

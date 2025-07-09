@@ -79,6 +79,7 @@ export default function Ticket() {
         setFilteredTickets(filtered);
     };
 
+
     return (
         <div>
             <header className="homepage">

@@ -88,9 +88,19 @@ export default function DetailTicket() {
                 <p><strong>Tanggal Kejadian:</strong> {ticket.date}</p>
                 <p><strong>Jenis Insiden:</strong> {ticket.type}</p>
                 <p><strong>Dampak:</strong> {ticket.impact}</p>
+                {ticket.attachment && (
+                    <div className="mt-3 mb-5">
+                        <h5>Lampiran:</h5>
+                        {ticket.attachment.startsWith("data:image") ? (
+                            <img src={ticket.attachment} alt="Lampiran" />
+                        ) : (
+                            <a href={ticket.attachment} download="lampiran">Unduh File</a>
+                        )}
+                    </div>
+                )}
                 <p><strong>Deskripsi:</strong></p>
                 <p>{ticket.description || "(Tidak ada deskripsi)"}</p>
-                <p><strong>Waktu Laporan:</strong> {new Date(ticket.createdAt).toLocaleString()}</p>
+                <p style={{ textAlign: 'end' }}>{new Date(ticket.createdAt).toLocaleString()}</p>
             </Card>
             <div className="chat-container mt-3">
                 {ticket.messages.map((msg, idx) => {

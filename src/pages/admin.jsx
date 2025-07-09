@@ -205,6 +205,16 @@ function Admin() {
                                         <p><strong>Email:</strong> {currentTicket.email || '-'}</p>
                                         <p><strong>Domain:</strong> {currentTicket.domain}</p>
                                         <p><strong>URL:</strong> {currentTicket.url}</p>
+                                        {currentTicket.attachment && (
+                                            <div className="mt-3">
+                                                <h5>Lampiran:</h5>
+                                                {currentTicket.attachment.startsWith("data:image") ? (
+                                                    <img src={currentTicket.attachment} alt="Lampiran" style={{ maxWidth: '100%', maxHeight: '400px' }} />
+                                                ) : (
+                                                    <a href={currentTicket.attachment} download="lampiran">Unduh File</a>
+                                                )}
+                                            </div>
+                                        )}
                                         <p><strong>Deskripsi:</strong> {currentTicket.description}</p>
                                         <p><strong>Dibuat Pada:</strong> {new Date(currentTicket.createdAt).toLocaleString()}</p>
                                         <p><strong>Status:</strong> {currentTicket.status}</p>
@@ -303,12 +313,12 @@ function Admin() {
                                         <p>
                                             <strong className="text-white me-2">Status:</strong>
                                             <span className={`badge ${ticket.status === "Diproses"
-                                                    ? "bg-primary"
-                                                    : ticket.status === "Selesai"
-                                                        ? "bg-success"
-                                                        : ticket.status === "Dibatalkan"
-                                                            ? "bg-danger"
-                                                            : "bg-secondary"
+                                                ? "bg-primary"
+                                                : ticket.status === "Selesai"
+                                                    ? "bg-success"
+                                                    : ticket.status === "Dibatalkan"
+                                                        ? "bg-danger"
+                                                        : "bg-secondary"
                                                 }`}>
                                                 {ticket.status}
                                             </span>
