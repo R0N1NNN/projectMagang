@@ -16,6 +16,16 @@ function BeritaSubs() {
         setUserEmail(email);
     }, []);
 
+    useEffect(() => {
+        const login = localStorage.getItem("isLoggedIn") === "true";
+        const email = localStorage.getItem("userEmail") || "";
+        const subs = localStorage.getItem(`subscribed-${email}`) === "true";
+        setIsLoggedIn(login);
+        setUserEmail(email);
+        setSubscribed(subs);
+    }, []);
+
+
     const handleSubscribe = async () => {
         if (!isLoggedIn || !userEmail) {
             alert("Silakan login terlebih dahulu untuk berlangganan.");
@@ -25,25 +35,34 @@ function BeritaSubs() {
 
         const templateParams = {
             email: userEmail,
-            name: 'User CSIRT', // atau ambil dari localStorage
+            name: 'User CSIRT',
         };
 
         try {
             await emailjs.send(
                 'service_5xto4gl',
-                'template_sx7xj7e', // buat template ini di EmailJS
+                'template_sx7xj7e',
                 templateParams,
                 'sTM5mgYVSE9bKXvr4'
             );
 
-
             alert("Subscription anda berhasil, anda akan mendapatkan info terbaru lebih dulu.");
             setSubscribed(true);
+            localStorage.setItem(`subscribed-${userEmail}`, "true");
         } catch (err) {
             console.error("Gagal mengirim email subscription:", err);
             alert("Terjadi kesalahan saat mengirim email.");
         }
     };
+
+    const handleUnsubscribe = () => {
+        if (confirm("Yakin ingin berhenti berlangganan?")) {
+            setSubscribed(false);
+            localStorage.removeItem(`subscribed-${userEmail}`);
+            alert("Anda telah berhenti berlangganan.");
+        }
+    };
+
 
     const newsData = [
         {
@@ -84,12 +103,17 @@ function BeritaSubs() {
 
             <Container className="mt-5">
                 <div className="text-center mb-5">
-                    {!subscribed ? (
+                    {subscribed ? (
+                        <>
+                            <p className="text-success fw-bold">✅ Anda sudah berlangganan berita terbaru.</p>
+                            <Button variant="danger" onClick={handleUnsubscribe}>
+                                Berhenti Berlangganan
+                            </Button>
+                        </>
+                    ) : (
                         <Button onClick={handleSubscribe} variant="primary">
                             {isLoggedIn ? "Subscribe untuk Info Terbaru" : "Login untuk Subscribe"}
                         </Button>
-                    ) : (
-                        <p className="text-success fw-bold">✅ Anda sudah berlangganan berita terbaru.</p>
                     )}
                 </div>
 
