@@ -70,6 +70,7 @@ function NavbarComponent() {
             <NavDropdown title="Informasi & Edukasi" id="basic-nav-dropdown" className="menu-dark" renderMenuOnMount={true}>
               <div className="dropdown-grid-wrapper">
                 <NavLink to="/berita" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-berita.png`} />Berita</NavLink>
+                <NavLink to="/beritaSubs" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-berita.png`} />Berita Terkini</NavLink>
                 <NavLink to="/event" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-event.png`} />Event</NavLink>
                 <NavLink to="/panduan" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-panduan.png`} />Panduan & Infografis</NavLink>
                 <NavLink to="/kegiatan" className={({ isActive }) => isActive ? "dropdown-item active-link" : "dropdown-item"}><img src={`${import.meta.env.BASE_URL}drop-kegiatan.png`} />Kegiatan</NavLink>

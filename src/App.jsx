@@ -11,6 +11,8 @@ import Home from './pages/home.jsx';
 import Profile from './pages/profile.jsx';
 import Berita from './pages/berita.jsx';
 import BeritaDetail from './pagesNumber/beritaDetail.jsx';
+import BeritaSubs from './pages/beritaSubs.jsx';
+import BeritaSubsDetail from './pages/beritaSubsDetail.jsx';
 import Event from './pages/event.jsx';
 import Panduan from './pages/panduan.jsx';
 import Kegiatan from './pages/kegiatan.jsx';
@@ -42,6 +44,8 @@ function App() {
           <Route path="/berita" element={<Berita />} />
           <Route path="/berita/:id" element={<BeritaDetail />} />
           <Route path="/berita/halaman/:halaman" element={<Berita />} />
+          <Route path="/beritaSubs" element={<BeritaSubs />} />
+          <Route path="/beritaSubsDetail" element={<BeritaSubsDetail />} />
           <Route path="/event" element={<Event />} />
           <Route path="/panduan" element={<Panduan />} />
           <Route path="/kegiatan" element={<Kegiatan />} />
