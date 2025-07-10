@@ -7,35 +7,31 @@ function BeritaSubs() {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userEmail, setUserEmail] = useState('');
+    const [userName, setUserName] = useState('');
     const [subscribed, setSubscribed] = useState(false);
+    const [showForm, setShowForm] = useState(false);
+    const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
 
     useEffect(() => {
         const login = localStorage.getItem("isLoggedIn") === "true";
         const email = localStorage.getItem("userEmail") || "";
+        const name = localStorage.getItem("userName") || "User CSIRT";
+        const alreadySubscribed = localStorage.getItem(`subscribed-${email}`) === "true";
+
         setIsLoggedIn(login);
         setUserEmail(email);
-    }, []);
+        setUserName(name);
 
-    useEffect(() => {
-        const login = localStorage.getItem("isLoggedIn") === "true";
-        const email = localStorage.getItem("userEmail") || "";
-        const subs = localStorage.getItem(`subscribed-${email}`) === "true";
-        setIsLoggedIn(login);
-        setUserEmail(email);
-        setSubscribed(subs);
-    }, []);
-
-
-    const handleSubscribe = async () => {
-        if (!isLoggedIn || !userEmail) {
-            alert("Silakan login terlebih dahulu untuk berlangganan.");
-            navigate('/login');
-            return;
+        if (alreadySubscribed) {
+            setSubscribed(true);
         }
+    }, []);
 
+    // Untuk login user
+    const handleSubscribe = async () => {
         const templateParams = {
             email: userEmail,
-            name: 'User CSIRT',
+            name: userName,
         };
 
         try {
@@ -47,22 +43,67 @@ function BeritaSubs() {
             );
 
             alert("Subscription anda berhasil, anda akan mendapatkan info terbaru lebih dulu.");
-            setSubscribed(true);
             localStorage.setItem(`subscribed-${userEmail}`, "true");
+            setSubscribed(true);
         } catch (err) {
             console.error("Gagal mengirim email subscription:", err);
             alert("Terjadi kesalahan saat mengirim email.");
         }
     };
 
-    const handleUnsubscribe = () => {
-        if (confirm("Yakin ingin berhenti berlangganan?")) {
-            setSubscribed(false);
-            localStorage.removeItem(`subscribed-${userEmail}`);
-            alert("Anda telah berhenti berlangganan.");
+    const handleUnsubscribe = async () => {
+        if (!confirm("Yakin ingin berhenti berlangganan?")) return;
+
+        const targetEmail = isLoggedIn ? userEmail : formData.email;
+
+        try {
+            await emailjs.send(
+                'service_5xto4gl',
+                'template_sx7xj7e',
+                {
+                    email: targetEmail,
+                    name: isLoggedIn ? userName : formData.name || "Pengunjung",
+                },
+                'sTM5mgYVSE9bKXvr4'
+            );
+        } catch (err) {
+            console.error("Gagal kirim email unsubscribe:", err);
         }
+
+        localStorage.removeItem(`subscribed-${targetEmail}`);
+        setSubscribed(false);
+        alert("Anda telah berhenti berlangganan.");
     };
 
+    // Untuk non-login user
+    const handleNonLoginSubscribe = async (e) => {
+        e.preventDefault();
+        const { name, email, phone } = formData;
+
+        if (!name || !email || !phone) {
+            alert("Semua data wajib diisi.");
+            return;
+        }
+
+        const templateParams = { name, email, phone };
+
+        try {
+            await emailjs.send(
+                'service_5xto4gl',
+                'template_sx7xj7e',
+                templateParams,
+                'sTM5mgYVSE9bKXvr4'
+            );
+
+            localStorage.setItem(`subscribed-${email}`, "true");
+            alert("Berhasil subscribe, Anda akan mendapatkan info terbaru.");
+            setSubscribed(true);
+            setShowForm(false);
+        } catch (err) {
+            console.error("Gagal mengirim subscription:", err);
+            alert("Terjadi kesalahan saat subscribe.");
+        }
+    };
 
     const newsData = [
         {
@@ -85,7 +126,6 @@ function BeritaSubs() {
         }
     ];
 
-
     return (
         <div className="berita-subs-page">
             <header className="homepage">
@@ -107,15 +147,46 @@ function BeritaSubs() {
                         <>
                             <p className="text-success fw-bold">✅ Anda sudah berlangganan berita terbaru.</p>
                             <Button variant="danger" onClick={handleUnsubscribe}>
-                                Berhenti Berlangganan
+                                ❌ Berhenti Berlangganan
                             </Button>
                         </>
                     ) : (
-                        <Button onClick={handleSubscribe} variant="primary">
-                            {isLoggedIn ? "Subscribe untuk Info Terbaru" : "Login untuk Subscribe"}
-                        </Button>
+                        <>
+                            {isLoggedIn ? (
+                                <Button variant="primary" onClick={handleSubscribe}>
+                                    Subscribe untuk Info Terbaru
+                                </Button>
+                            ) : (
+                                <Button onClick={() => setShowForm(true)} variant="primary">
+                                    Subscribe untuk Info Terbaru
+                                </Button>
+                            )}
+                        </>
                     )}
                 </div>
+
+                {showForm && (
+                    <div className="popup-form" style={{
+                        position: "fixed", top: 0, left: 0, width: "100%", height: "100%",
+                        backgroundColor: "rgba(0,0,0,0.6)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1000
+                    }}>
+                        <Card style={{ padding: '30px', maxWidth: '400px', width: '100%' }}>
+                            <h5 className="mb-3">Form Subscribe</h5>
+                            <form onSubmit={handleNonLoginSubscribe}>
+                                <input type="text" className="form-control mb-2" placeholder="Nama Lengkap"
+                                    value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+                                <input type="email" className="form-control mb-2" placeholder="Email"
+                                    value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                                <input type="tel" className="form-control mb-3" placeholder="No. Telepon"
+                                    value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
+                                <div className="d-flex justify-content-between">
+                                    <Button variant="secondary" onClick={() => setShowForm(false)}>Batal</Button>
+                                    <Button variant="success" type="submit">Kirim</Button>
+                                </div>
+                            </form>
+                        </Card>
+                    </div>
+                )}
 
                 <Row>
                     {newsData.map((berita) => (
@@ -133,7 +204,6 @@ function BeritaSubs() {
                         </Col>
                     ))}
                 </Row>
-
             </Container>
         </div>
     );
